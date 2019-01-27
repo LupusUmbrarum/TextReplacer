@@ -1,0 +1,11 @@
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\bin\Debug\TextReplacer.exe.config
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\bin\Debug\TextReplacer.exe
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\bin\Debug\TextReplacer.pdb
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csprojResolveAssemblyReference.cache
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.Properties.Resources.resources
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.GenerateResource.cache
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.CoreCompileInputs.cache
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.exe
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.pdb
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.TextReplacer.resources
+C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.ResolveComReference.cache
