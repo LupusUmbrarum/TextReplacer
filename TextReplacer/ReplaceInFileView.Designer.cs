@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.addFilesButton = new System.Windows.Forms.Button();
             this.replaceTextButton = new System.Windows.Forms.Button();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
@@ -42,6 +43,13 @@
             this.wordPairPanel = new System.Windows.Forms.Panel();
             this.clearFilesButton = new System.Windows.Forms.Button();
             this.filePathPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.sfd = new System.Windows.Forms.SaveFileDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.createNewCheckBox = new System.Windows.Forms.CheckBox();
+            this.byGroupCheckBox = new System.Windows.Forms.CheckBox();
+            this.onCreateCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // addFilesButton
@@ -166,13 +174,74 @@
             this.filePathPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.filePathPanel.Location = new System.Drawing.Point(16, 64);
             this.filePathPanel.Name = "filePathPanel";
-            this.filePathPanel.Size = new System.Drawing.Size(360, 325);
+            this.filePathPanel.Size = new System.Drawing.Size(360, 163);
             this.filePathPanel.TabIndex = 15;
             // 
-            // ReplaceInEditorView
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(19, 399);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 230);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "Options";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.Tag = "";
+            // 
+            // createNewCheckBox
+            // 
+            this.createNewCheckBox.AutoSize = true;
+            this.createNewCheckBox.Location = new System.Drawing.Point(15, 246);
+            this.createNewCheckBox.Name = "createNewCheckBox";
+            this.createNewCheckBox.Size = new System.Drawing.Size(112, 17);
+            this.createNewCheckBox.TabIndex = 41;
+            this.createNewCheckBox.Text = "Create New File(s)";
+            this.createNewCheckBox.UseVisualStyleBackColor = true;
+            this.createNewCheckBox.CheckedChanged += new System.EventHandler(this.createNewCheckBox_CheckedChanged);
+            // 
+            // byGroupCheckBox
+            // 
+            this.byGroupCheckBox.AutoSize = true;
+            this.byGroupCheckBox.Location = new System.Drawing.Point(170, 246);
+            this.byGroupCheckBox.Name = "byGroupCheckBox";
+            this.byGroupCheckBox.Size = new System.Drawing.Size(104, 17);
+            this.byGroupCheckBox.TabIndex = 42;
+            this.byGroupCheckBox.Text = "Create By Group";
+            this.byGroupCheckBox.UseVisualStyleBackColor = true;
+            this.byGroupCheckBox.CheckedChanged += new System.EventHandler(this.byGroupCheckBox_CheckedChanged);
+            // 
+            // onCreateCheckBox
+            // 
+            this.onCreateCheckBox.AutoSize = true;
+            this.onCreateCheckBox.Location = new System.Drawing.Point(170, 269);
+            this.onCreateCheckBox.Name = "onCreateCheckBox";
+            this.onCreateCheckBox.Size = new System.Drawing.Size(124, 17);
+            this.onCreateCheckBox.TabIndex = 43;
+            this.onCreateCheckBox.Text = "Name File On Create";
+            this.onCreateCheckBox.UseVisualStyleBackColor = true;
+            this.onCreateCheckBox.CheckedChanged += new System.EventHandler(this.onCreateCheckBox_CheckedChanged);
+            // 
+            // ReplaceInFileView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.onCreateCheckBox);
+            this.Controls.Add(this.byGroupCheckBox);
+            this.Controls.Add(this.createNewCheckBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.addFilesButton);
             this.Controls.Add(this.replaceTextButton);
             this.Controls.Add(this.label4);
@@ -186,7 +255,7 @@
             this.Controls.Add(this.wordPairPanel);
             this.Controls.Add(this.clearFilesButton);
             this.Controls.Add(this.filePathPanel);
-            this.Name = "ReplaceInEditorView";
+            this.Name = "ReplaceInFileView";
             this.Size = new System.Drawing.Size(776, 435);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -209,5 +278,12 @@
         private System.Windows.Forms.Panel wordPairPanel;
         private System.Windows.Forms.Button clearFilesButton;
         private System.Windows.Forms.Panel filePathPanel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.SaveFileDialog sfd;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox createNewCheckBox;
+        private System.Windows.Forms.CheckBox byGroupCheckBox;
+        private System.Windows.Forms.CheckBox onCreateCheckBox;
     }
 }

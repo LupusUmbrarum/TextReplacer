@@ -64,7 +64,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(44, 44);
+            this.label4.Location = new System.Drawing.Point(29, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 13);
             this.label4.TabIndex = 34;
@@ -128,9 +128,9 @@
             // 
             this.wordPairPanel.AutoScroll = true;
             this.wordPairPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.wordPairPanel.Location = new System.Drawing.Point(44, 63);
+            this.wordPairPanel.Location = new System.Drawing.Point(29, 63);
             this.wordPairPanel.Name = "wordPairPanel";
-            this.wordPairPanel.Size = new System.Drawing.Size(360, 325);
+            this.wordPairPanel.Size = new System.Drawing.Size(358, 325);
             this.wordPairPanel.TabIndex = 27;
             // 
             // button1

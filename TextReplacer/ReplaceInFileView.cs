@@ -11,7 +11,7 @@ using System.IO;
 
 namespace TextReplacer
 {
-    public partial class ReplaceInFileView : UserControl
+    public partial class ReplaceInFileView : UserControl, WizardFriendly
     {
         private List<string> files = new List<string>();
         private List<WordPair> pairs = new List<WordPair>();
@@ -38,7 +38,7 @@ namespace TextReplacer
                         filePathPanel.Controls.Add(nl);
                         files.Add(file);
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) { ex.GetBaseException(); }
                 }
             }
         }
@@ -137,7 +137,7 @@ namespace TextReplacer
 
                         File.WriteAllLines(file, lines);
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) { ex.GetBaseException(); }
                 }
             }
 
@@ -167,6 +167,40 @@ namespace TextReplacer
             doc.Selection.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards, ref matchSoundsLike,
                 ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceText, ref replace,
                 ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
+        }
+
+        void WizardFriendly.addWordPair_Wizard(string targetText, string newText)
+        {
+            WordPair wp = new WordPair(targetText, newText);
+            pairs.Add(wp);
+            Label l = new Label();
+            l.Text = wp.target + " -> " + wp.newText;
+            l.Width = l.Text.Length * 10;
+            int count = wordPairPanel.Controls.Count;
+            l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
+            wordPairPanel.Controls.Add(l);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WordPairWizard wpw = new WordPairWizard(this);
+            wpw.ShowDialog();
+        }
+
+        private void createNewCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            byGroupCheckBox.Enabled = !createNewCheckBox.Checked;
+            onCreateCheckBox.Enabled = !createNewCheckBox.Checked;
+        }
+
+        private void byGroupCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onCreateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
