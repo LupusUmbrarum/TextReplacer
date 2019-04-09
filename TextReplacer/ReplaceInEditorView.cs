@@ -105,6 +105,11 @@ namespace TextReplacer
             wordPairPanel.Controls.Add(l);
         }
 
+        void WizardFriendly.removeWordPair_Wizard(WordPair wp)
+        {
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             WordPairWizard wpw = new WordPairWizard(this);

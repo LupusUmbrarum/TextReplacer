@@ -77,18 +77,7 @@ namespace TextReplacer
         {
             if (targetTextTextBox.Text.Length > 0 && newTextTextBox.Text.Length > 0)
             {
-                WordPair wp = new WordPair(targetTextTextBox.Text, newTextTextBox.Text);
-                pairs.Add(wp);
-                Label l = new Label();
-                l.Text = wp.target + " -> " + wp.newText;
-                l.Width = l.Text.Length * 10;
-                int count = wordPairPanel.Controls.Count;
-                l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
-                wordPairPanel.Controls.Add(l);
-
-                targetTextTextBox.Text = "";
-                newTextTextBox.Text = "";
-                targetTextTextBox.Focus();
+                addWordPair(targetTextTextBox.Text, newTextTextBox.Text, false);
             }
         }
 
@@ -179,6 +168,33 @@ namespace TextReplacer
             int count = wordPairPanel.Controls.Count;
             l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
             wordPairPanel.Controls.Add(l);
+        }
+
+        void WizardFriendly.removeWordPair_Wizard(WordPair wp)
+        {
+
+        }
+
+        void addWordPair(string targetText, string newText, bool fromWizard)
+        {
+            WordPair wp = new WordPair(targetTextTextBox.Text, newTextTextBox.Text);
+            pairs.Add(wp);
+            Label l = new Label();
+            l.Text = wp.target + " -> " + wp.newText;
+            l.Width = l.Text.Length * 10;
+
+            wp.MakeVisual(ref wordPairPanel, this);
+
+            int count = wordPairPanel.Controls.Count;
+            l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
+            //wordPairPanel.Controls.Add(l);
+
+            if(!fromWizard)
+            {
+                targetTextTextBox.Text = "";
+                newTextTextBox.Text = "";
+                targetTextTextBox.Focus();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

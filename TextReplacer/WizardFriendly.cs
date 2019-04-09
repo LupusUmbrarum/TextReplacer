@@ -9,5 +9,6 @@ namespace TextReplacer
     public interface WizardFriendly
     {
         void addWordPair_Wizard(string targetText, string newText);
+        void removeWordPair_Wizard(WordPair wp);
     }
 }
