@@ -50,6 +50,7 @@
             this.createNewCheckBox = new System.Windows.Forms.CheckBox();
             this.byGroupCheckBox = new System.Windows.Forms.CheckBox();
             this.onCreateCheckBox = new System.Windows.Forms.CheckBox();
+            this.matchCaseCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // addFilesButton
@@ -233,10 +234,22 @@
             this.onCreateCheckBox.UseVisualStyleBackColor = true;
             this.onCreateCheckBox.CheckedChanged += new System.EventHandler(this.onCreateCheckBox_CheckedChanged);
             // 
+            // matchCaseCheckBox
+            // 
+            this.matchCaseCheckBox.AutoSize = true;
+            this.matchCaseCheckBox.Location = new System.Drawing.Point(15, 300);
+            this.matchCaseCheckBox.Name = "matchCaseCheckBox";
+            this.matchCaseCheckBox.Size = new System.Drawing.Size(82, 17);
+            this.matchCaseCheckBox.TabIndex = 44;
+            this.matchCaseCheckBox.Text = "Match case";
+            this.matchCaseCheckBox.UseVisualStyleBackColor = true;
+            this.matchCaseCheckBox.CheckedChanged += new System.EventHandler(this.matchCaseCheckBox_CheckedChanged);
+            // 
             // ReplaceInFileView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.matchCaseCheckBox);
             this.Controls.Add(this.onCreateCheckBox);
             this.Controls.Add(this.byGroupCheckBox);
             this.Controls.Add(this.createNewCheckBox);
@@ -285,5 +298,6 @@
         private System.Windows.Forms.CheckBox createNewCheckBox;
         private System.Windows.Forms.CheckBox byGroupCheckBox;
         private System.Windows.Forms.CheckBox onCreateCheckBox;
+        private System.Windows.Forms.CheckBox matchCaseCheckBox;
     }
 }

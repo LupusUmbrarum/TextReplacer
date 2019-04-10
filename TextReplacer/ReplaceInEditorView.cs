@@ -47,6 +47,7 @@ namespace TextReplacer
         {
             if (targetTextTextBox.Text.Length > 0 && newTextTextBox.Text.Length > 0)
             {
+                /*
                 WordPair wp = new WordPair(targetTextTextBox.Text, newTextTextBox.Text);
                 pairs.Add(wp);
                 Label l = new Label();
@@ -59,6 +60,9 @@ namespace TextReplacer
                 targetTextTextBox.Text = "";
                 newTextTextBox.Text = "";
                 targetTextTextBox.Focus();
+                */
+
+                addWordPair(targetTextTextBox.Text, newTextTextBox.Text, false);
             }
         }
 
@@ -95,6 +99,7 @@ namespace TextReplacer
 
         void WizardFriendly.addWordPair_Wizard(string targetText, string newText)
         {
+            /*
             WordPair wp = new WordPair(targetText, newText);
             pairs.Add(wp);
             Label l = new Label();
@@ -103,11 +108,51 @@ namespace TextReplacer
             int count = wordPairPanel.Controls.Count;
             l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
             wordPairPanel.Controls.Add(l);
+            */
+            addWordPair(targetText, newText, true);
         }
 
         void WizardFriendly.removeWordPair_Wizard(WordPair wp)
         {
+            int location = 0;
 
+            for (int i = 0; i < pairs.Count; i++)
+            {
+                if (pairs[i] == wp)
+                {
+                    wordPairPanel.Controls.Remove(wp.panel);
+                    location = i;
+                }
+            }
+
+            for (; location < pairs.Count; location++)
+            {
+                pairs[location].panel.SetBounds(pairs[location].panel.Location.X, (location > 0 ? location - 1 : location) * pairs[location].panel.Height, pairs[location].panel.Width, pairs[location].panel.Height);
+            }
+
+            pairs.Remove(wp);
+        }
+
+        void addWordPair(string targetText, string newText, bool fromWizard)
+        {
+            WordPair wp = new WordPair(targetTextTextBox.Text, newTextTextBox.Text);
+            pairs.Add(wp);
+            Label l = new Label();
+            l.Text = wp.target + " -> " + wp.newText;
+            l.Width = l.Text.Length * 10;
+
+            wp.MakeVisual(ref wordPairPanel, this);
+
+            int count = wordPairPanel.Controls.Count;
+            l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
+            //wordPairPanel.Controls.Add(l);
+
+            if (!fromWizard)
+            {
+                targetTextTextBox.Text = "";
+                newTextTextBox.Text = "";
+                targetTextTextBox.Focus();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

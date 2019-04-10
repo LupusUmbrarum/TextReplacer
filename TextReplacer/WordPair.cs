@@ -10,8 +10,9 @@ namespace TextReplacer
 {
     public class WordPair
     {
+        public int groupNum;
         public string target, newText, group;
-        Panel panel;
+        public Panel panel;
         TextBox targetBox, newBox, groupBox;
         Button remove;
         WizardFriendly parent;
@@ -22,6 +23,11 @@ namespace TextReplacer
             this.target = target;
             this.newText = newText;
             this.group = group;
+
+            if(!int.TryParse(group, out groupNum))
+            {
+                MessageBox.Show("Group number must be numeric", "Error");
+            }
         }
 
         public void MakeVisual(ref Panel owningPanel, WizardFriendly parent)
@@ -43,11 +49,13 @@ namespace TextReplacer
             groupBox.TextAlign = HorizontalAlignment.Left;
             groupBox.Text = group;
             groupBox.SetBounds(5, panel.Height / 2 - groupBox.Height / 2, 25, groupBox.Height);
+            groupBox.TextChanged += editGroup;
             panel.Controls.Add(groupBox);
 
             targetBox = new TextBox();
-            targetBox.SetBounds(groupBox.Location.X + groupBox.Width + 10, panel.Height / 2 - targetBox.Height / 2, owningPanel.Width / 4, targetBox.Height);
+            targetBox.SetBounds(groupBox.Location.X + groupBox.Width + 10, panel.Height / 2 - targetBox.Height / 2, owningPanel.Width / 3, targetBox.Height);
             targetBox.Text = target;
+            targetBox.TextChanged += this.editWords;
             panel.Controls.Add(targetBox);
 
             Label arrow = new Label();
@@ -56,13 +64,54 @@ namespace TextReplacer
             panel.Controls.Add(arrow);
 
             newBox = new TextBox();
-            newBox.SetBounds(arrow.Location.X + arrow.Width, panel.Height / 2 - newBox.Height / 2, owningPanel.Width / 4, newBox.Height);
+            newBox.SetBounds(arrow.Location.X + arrow.Width, panel.Height / 2 - newBox.Height / 2, owningPanel.Width / 3, newBox.Height);
             newBox.Text = newText;
+            newBox.TextChanged += this.editWords;
             panel.Controls.Add(newBox);
+
+            remove = new Button();
+            int removeHeight = 25;
+            remove.SetBounds(panel.Width - 30, panel.Height / 2 - removeHeight / 2 - 1, 25, removeHeight);
+            remove.BackgroundImageLayout = ImageLayout.Stretch;
+            remove.BackgroundImage = Properties.Resources.x_image2;
+            remove.Click += new EventHandler(this.removeButtonHandler);
+            panel.Controls.Add(remove);
 
             owningPanel.Controls.Add(panel);
 
             beenMadeVisual = true;
+        }
+
+        void removeButtonHandler(object sender, EventArgs e)
+        {
+            if(parent == null)
+            {
+                return;
+            }
+
+            parent.removeWordPair_Wizard(this);
+        }
+
+        void editWords(object sender, EventArgs e)
+        {
+            target = targetBox.Text;
+            newText = newBox.Text;
+        }
+
+        void editGroup(object sender, EventArgs e)
+        {
+            if(groupBox.Text.Length > 0)
+            {
+                if (!int.TryParse(groupBox.Text, out groupNum))
+                {
+                    MessageBox.Show("Group number must be numeric", "Error");
+                    groupBox.Text = group;
+                }
+                else
+                {
+                    group = groupNum.ToString();
+                }
+            }
         }
     }
 }

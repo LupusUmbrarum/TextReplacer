@@ -80,7 +80,7 @@ namespace TextReplacer
                 addWordPair(targetTextTextBox.Text, newTextTextBox.Text, false);
             }
         }
-
+        
         private void replaceText()
         {
             if (files.Count <= 0 || pairs.Count <= 0)
@@ -95,18 +95,6 @@ namespace TextReplacer
                     try
                     {
                         string extension = file.Substring(file.LastIndexOf('.'));
-
-                        if (extension == ".docx" || extension == ".doc")
-                        {
-                            object fileName = Path.Combine(System.Windows.Forms.Application.StartupPath, "file");
-
-                            Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application() { Visible = false };
-                            Microsoft.Office.Interop.Word.Document aDoc = wordApp.Documents.Open(fileName, ReadOnly: false, Visible: false);
-
-                            aDoc.Activate();
-                            wordDocFindAndReplace(wordApp, pair.target, pair.newText);
-                            aDoc.Save();
-                        }
 
                         string[] lines = File.ReadAllLines(file);
 
@@ -133,31 +121,6 @@ namespace TextReplacer
             MessageBox.Show("Finished");
         }
 
-        private void wordDocFindAndReplace(Microsoft.Office.Interop.Word.Application doc, object findText, object replaceText)
-        {
-            // options
-            object matchCase = false;
-            object matchWholeWord = true;
-            object matchWildCards = false;
-            object matchSoundsLike = false;
-            object matchAllWordForms = false;
-            object forward = true;
-            object format = false;
-            object matchKashida = false;
-            object matchDiacritics = false;
-            object matchAlefHamza = false;
-            object matchControl = false;
-            object read_only = false;
-            object visible = true;
-            object replace = 2;
-            object wrap = 1;
-
-            // execute find and replace
-            doc.Selection.Find.Execute(ref findText, ref matchCase, ref matchWholeWord, ref matchWildCards, ref matchSoundsLike,
-                ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceText, ref replace,
-                ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
-        }
-
         void WizardFriendly.addWordPair_Wizard(string targetText, string newText)
         {
             WordPair wp = new WordPair(targetText, newText);
@@ -172,7 +135,23 @@ namespace TextReplacer
 
         void WizardFriendly.removeWordPair_Wizard(WordPair wp)
         {
+            int location = 0;
 
+            for(int i = 0; i < pairs.Count; i++)
+            {
+                if(pairs[i] == wp)
+                {
+                    wordPairPanel.Controls.Remove(wp.panel);
+                    location = i;
+                }
+            }
+
+            for(;location < pairs.Count; location++)
+            {
+                pairs[location].panel.SetBounds(pairs[location].panel.Location.X, (location > 0 ? location-1 : location) * pairs[location].panel.Height, pairs[location].panel.Width, pairs[location].panel.Height);
+            }
+
+            pairs.Remove(wp);
         }
 
         void addWordPair(string targetText, string newText, bool fromWizard)
@@ -215,6 +194,11 @@ namespace TextReplacer
         }
 
         private void onCreateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void matchCaseCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 
         }
