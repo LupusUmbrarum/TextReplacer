@@ -26,8 +26,6 @@ C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextRepl
 C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.exe.config
 C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.exe
 C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.pdb
-C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\bin\Debug\AxInterop.Microsoft.Vbe.Interop.Forms.dll
-C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\AxInterop.Microsoft.Vbe.Interop.Forms.dll
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csprojAssemblyReference.cache
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.exe
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.pdb

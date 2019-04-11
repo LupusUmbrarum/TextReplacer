@@ -80,6 +80,7 @@
     <Compile Include="ReplaceInFileView.Designer.cs">
       <DependentUpon>ReplaceInFileView.cs</DependentUpon>
     </Compile>
+    <Compile Include="VisualFile.cs" />
     <Compile Include="WizardFriendly.cs" />
     <Compile Include="WordPair.cs" />
     <Compile Include="WordPairWizard.cs">

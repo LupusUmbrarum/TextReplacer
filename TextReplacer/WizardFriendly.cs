@@ -10,5 +10,7 @@ namespace TextReplacer
     {
         void addWordPair_Wizard(string targetText, string newText);
         void removeWordPair_Wizard(WordPair wp);
+        void addFile_Wizard(string path);
+        void removeFile_Wizard(VisualFile vf);
     }
 }

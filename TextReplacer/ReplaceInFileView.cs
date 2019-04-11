@@ -16,6 +16,8 @@ namespace TextReplacer
         private List<string> files = new List<string>();
         private List<WordPair> pairs = new List<WordPair>();
 
+        bool createNew = false, byGroup = false, nameOnCreate = false, matchCase = false;
+
         public ReplaceInFileView()
         {
             InitializeComponent();
@@ -88,6 +90,88 @@ namespace TextReplacer
                 return;
             }
 
+            if(createNew)
+            {
+                if(byGroup)
+                {
+                    // create a copy of the wordpair list
+                    List<WordPair> sortedPairs = pairs;
+
+                    // sort the pairs by groupnumber
+                    for(int i = 0; i < sortedPairs.Count - 1; i++)
+                    {
+                        for(int j = i; j < sortedPairs.Count - i - 1; j++)
+                        {
+                            if(sortedPairs[j].groupNum > sortedPairs[j + 1].groupNum)
+                            {
+                                WordPair temp = sortedPairs[j];
+                                sortedPairs[j] = sortedPairs[j + 1];
+                                sortedPairs[j + 1] = temp;
+                            }
+                        }
+                    }
+
+                    // go through the list of sorted pairs
+                    while(sortedPairs.Count > 0)
+                    {
+                        int groupNum = sortedPairs[0].groupNum;
+
+                        List<WordPair> subGroup = new List<WordPair>();
+
+                        // populate the subGroup with wordpairs that have the same groupnumber
+                        for (int i = 0; i < sortedPairs.Count; i++)
+                        {
+                            if(groupNum == sortedPairs[i].groupNum)
+                            {
+                                subGroup.Add(sortedPairs[i]);
+                                sortedPairs.RemoveAt(i);
+                                i--;
+                            }
+                        }
+
+                        for(int i = 0; i < subGroup.Count; i++)
+                        {
+                            WordPair pair = subGroup[i];
+
+                            foreach (String file in files)
+                            {
+                                try
+                                {
+                                    string extension = file.Substring(file.LastIndexOf('.'));
+
+                                    string[] lines = File.ReadAllLines(file);
+
+                                    for (int x = 0; x < lines.Length; x++)
+                                    {
+                                        while (lines[x].Contains(pair.target))
+                                        {
+                                            // replace
+                                            string cline = lines[x];
+                                            int tlen = pair.target.Length;
+                                            string a = cline.Substring(0, cline.IndexOf(pair.target));
+                                            string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
+
+                                            lines[x] = a + pair.newText + b;
+                                        }
+                                    }
+
+                                    if(nameOnCreate)
+                                    {
+                                        //open sfd
+                                        //use path to File.writealllines
+                                    }
+                                    else
+                                    {
+                                        File.WriteAllLines(file + groupNum.ToString(), lines);
+                                    }
+                                }
+                                catch (Exception ex) { ex.GetBaseException(); }
+                            }
+                        }
+                    }
+                }
+            }
+
             foreach (WordPair pair in pairs)
             {
                 foreach (String file in files)
@@ -157,16 +241,8 @@ namespace TextReplacer
         void addWordPair(string targetText, string newText, bool fromWizard)
         {
             WordPair wp = new WordPair(targetTextTextBox.Text, newTextTextBox.Text);
-            pairs.Add(wp);
-            Label l = new Label();
-            l.Text = wp.target + " -> " + wp.newText;
-            l.Width = l.Text.Length * 10;
 
             wp.MakeVisual(ref wordPairPanel, this);
-
-            int count = wordPairPanel.Controls.Count;
-            l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
-            //wordPairPanel.Controls.Add(l);
 
             if(!fromWizard)
             {
@@ -174,6 +250,16 @@ namespace TextReplacer
                 newTextTextBox.Text = "";
                 targetTextTextBox.Focus();
             }
+        }
+
+        void WizardFriendly.addFile_Wizard(string path)
+        {
+
+        }
+
+        void WizardFriendly.removeFile_Wizard(VisualFile vf)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -186,21 +272,22 @@ namespace TextReplacer
         {
             byGroupCheckBox.Enabled = !createNewCheckBox.Checked;
             onCreateCheckBox.Enabled = !createNewCheckBox.Checked;
+            createNew = createNewCheckBox.Checked;
         }
 
         private void byGroupCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            byGroup = byGroupCheckBox.Checked;
         }
 
         private void onCreateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            nameOnCreate = onCreateCheckBox.Checked;
         }
 
         private void matchCaseCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            matchCase = matchCaseCheckBox.Checked;
         }
     }
 }
