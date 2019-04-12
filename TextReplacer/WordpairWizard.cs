@@ -110,5 +110,44 @@ namespace TextReplacer
         {
             addWordPairs();
         }
+
+        private void generalKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+            else
+            {
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+
+            if (targetTextTextBox.Text == "")
+            {
+                targetTextTextBox.Focus();
+                return;
+            }
+
+            if (startNumTextBox.Text == "")
+            {
+                startNumTextBox.Focus();
+                return;
+            }
+
+            if (endNumTextBox.Text == "")
+            {
+                endNumTextBox.Focus();
+                return;
+            }
+
+            if (stepNumTextBox.Text == "")
+            {
+                stepNumTextBox.Focus();
+                return;
+            }
+
+            addWordPairs();
+        }
     }
 }

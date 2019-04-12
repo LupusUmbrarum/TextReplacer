@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.incrementalTab = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.targetTextTextBox = new System.Windows.Forms.TextBox();
-            this.startNumTextBox = new System.Windows.Forms.TextBox();
             this.endNumTextBox = new System.Windows.Forms.TextBox();
+            this.startNumTextBox = new System.Windows.Forms.TextBox();
             this.stepNumTextBox = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,25 +42,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
+            this.addPairsButton = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.incrementalTab.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.incrementalTab);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(464, 321);
-            this.tabControl1.TabIndex = 28;
             // 
             // incrementalTab
             // 
-            this.incrementalTab.Controls.Add(this.button1);
+            this.incrementalTab.Controls.Add(this.addPairsButton);
             this.incrementalTab.Controls.Add(this.label10);
             this.incrementalTab.Controls.Add(this.label9);
             this.incrementalTab.Controls.Add(this.label8);
@@ -74,27 +61,16 @@
             this.incrementalTab.Controls.Add(this.label3);
             this.incrementalTab.Controls.Add(this.label1);
             this.incrementalTab.Controls.Add(this.stepNumTextBox);
-            this.incrementalTab.Controls.Add(this.textBox2);
             this.incrementalTab.Controls.Add(this.startNumTextBox);
             this.incrementalTab.Controls.Add(this.endNumTextBox);
             this.incrementalTab.Controls.Add(this.targetTextTextBox);
             this.incrementalTab.Location = new System.Drawing.Point(4, 22);
             this.incrementalTab.Name = "incrementalTab";
             this.incrementalTab.Padding = new System.Windows.Forms.Padding(3);
-            this.incrementalTab.Size = new System.Drawing.Size(456, 295);
+            this.incrementalTab.Size = new System.Drawing.Size(376, 235);
             this.incrementalTab.TabIndex = 0;
             this.incrementalTab.Text = "Incremental";
             this.incrementalTab.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(456, 295);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // targetTextTextBox
             // 
@@ -102,13 +78,7 @@
             this.targetTextTextBox.Name = "targetTextTextBox";
             this.targetTextTextBox.Size = new System.Drawing.Size(86, 20);
             this.targetTextTextBox.TabIndex = 30;
-            // 
-            // startNumTextBox
-            // 
-            this.startNumTextBox.Location = new System.Drawing.Point(63, 111);
-            this.startNumTextBox.Name = "startNumTextBox";
-            this.startNumTextBox.Size = new System.Drawing.Size(86, 20);
-            this.startNumTextBox.TabIndex = 32;
+            this.targetTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // endNumTextBox
             // 
@@ -116,6 +86,15 @@
             this.endNumTextBox.Name = "endNumTextBox";
             this.endNumTextBox.Size = new System.Drawing.Size(86, 20);
             this.endNumTextBox.TabIndex = 33;
+            this.endNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
+            // 
+            // startNumTextBox
+            // 
+            this.startNumTextBox.Location = new System.Drawing.Point(63, 111);
+            this.startNumTextBox.Name = "startNumTextBox";
+            this.startNumTextBox.Size = new System.Drawing.Size(86, 20);
+            this.startNumTextBox.TabIndex = 32;
+            this.startNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // stepNumTextBox
             // 
@@ -123,13 +102,7 @@
             this.stepNumTextBox.Name = "stepNumTextBox";
             this.stepNumTextBox.Size = new System.Drawing.Size(86, 20);
             this.stepNumTextBox.TabIndex = 34;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(208, 187);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(86, 20);
-            this.textBox2.TabIndex = 35;
+            this.stepNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // label1
             // 
@@ -212,50 +185,58 @@
             this.label10.TabIndex = 44;
             this.label10.Text = "will indicate that the numbers will increase by one each time, from 14 to 17";
             // 
-            // button1
+            // addPairsButton
             // 
-            this.button1.Location = new System.Drawing.Point(120, 235);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 45;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.addPairsButton.Location = new System.Drawing.Point(63, 163);
+            this.addPairsButton.Name = "addPairsButton";
+            this.addPairsButton.Size = new System.Drawing.Size(75, 23);
+            this.addPairsButton.TabIndex = 45;
+            this.addPairsButton.Text = "Add Pairs";
+            this.addPairsButton.UseVisualStyleBackColor = true;
+            this.addPairsButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.incrementalTab);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(384, 261);
+            this.tabControl1.TabIndex = 28;
             // 
             // WordPairWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 321);
+            this.ClientSize = new System.Drawing.Size(384, 261);
             this.Controls.Add(this.tabControl1);
             this.Name = "WordPairWizard";
             this.Text = "WordPairWizard";
-            this.tabControl1.ResumeLayout(false);
             this.incrementalTab.ResumeLayout(false);
             this.incrementalTab.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage incrementalTab;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox targetTextTextBox;
-        private System.Windows.Forms.TextBox stepNumTextBox;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox startNumTextBox;
-        private System.Windows.Forms.TextBox endNumTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button addPairsButton;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox stepNumTextBox;
+        private System.Windows.Forms.TextBox startNumTextBox;
+        private System.Windows.Forms.TextBox endNumTextBox;
+        private System.Windows.Forms.TextBox targetTextTextBox;
+        private System.Windows.Forms.TabControl tabControl1;
     }
 }

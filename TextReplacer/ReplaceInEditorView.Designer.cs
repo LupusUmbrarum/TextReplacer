@@ -38,7 +38,7 @@
             this.newTextTextBox = new System.Windows.Forms.TextBox();
             this.addWordPairButton = new System.Windows.Forms.Button();
             this.wordPairPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.wizardButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox
@@ -104,7 +104,7 @@
             this.targetTextTextBox.Name = "targetTextTextBox";
             this.targetTextTextBox.Size = new System.Drawing.Size(86, 20);
             this.targetTextTextBox.TabIndex = 28;
-            this.targetTextTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.generalPreviewKeyDown);
+            this.targetTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // newTextTextBox
             // 
@@ -112,7 +112,7 @@
             this.newTextTextBox.Name = "newTextTextBox";
             this.newTextTextBox.Size = new System.Drawing.Size(86, 20);
             this.newTextTextBox.TabIndex = 29;
-            this.newTextTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.generalPreviewKeyDown);
+            this.newTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // addWordPairButton
             // 
@@ -133,21 +133,21 @@
             this.wordPairPanel.Size = new System.Drawing.Size(358, 325);
             this.wordPairPanel.TabIndex = 27;
             // 
-            // button1
+            // wizardButton
             // 
-            this.button1.Location = new System.Drawing.Point(17, 398);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.wizardButton.Location = new System.Drawing.Point(17, 398);
+            this.wizardButton.Name = "wizardButton";
+            this.wizardButton.Size = new System.Drawing.Size(75, 23);
+            this.wizardButton.TabIndex = 35;
+            this.wizardButton.Text = "Wizard";
+            this.wizardButton.UseVisualStyleBackColor = true;
+            this.wizardButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // ReplaceInEditorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.wizardButton);
             this.Controls.Add(this.replaceTextButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.clearWordPairButton);
@@ -177,6 +177,6 @@
         private System.Windows.Forms.TextBox newTextTextBox;
         private System.Windows.Forms.Button addWordPairButton;
         private System.Windows.Forms.Panel wordPairPanel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button wizardButton;
     }
 }

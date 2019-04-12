@@ -21,7 +21,7 @@ namespace TextReplacer
 
         private void addWordPairButton_Click(object sender, EventArgs e)
         {
-            addWordPair();
+            addWordPair(targetTextTextBox.Text, newTextTextBox.Text, false);
         }
 
         private void clearWordPairButton_Click(object sender, EventArgs e)
@@ -33,37 +33,6 @@ namespace TextReplacer
         private void replaceTextButton_Click(object sender, EventArgs e)
         {
             replaceText();
-        }
-
-        private void generalPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                addWordPair();
-            }
-        }
-
-        private void addWordPair()
-        {
-            if (targetTextTextBox.Text.Length > 0 && newTextTextBox.Text.Length > 0)
-            {
-                /*
-                WordPair wp = new WordPair(targetTextTextBox.Text, newTextTextBox.Text);
-                pairs.Add(wp);
-                Label l = new Label();
-                l.Text = wp.target + " -> " + wp.newText;
-                l.Width = l.Text.Length * 10;
-                int count = wordPairPanel.Controls.Count;
-                l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
-                wordPairPanel.Controls.Add(l);
-
-                targetTextTextBox.Text = "";
-                newTextTextBox.Text = "";
-                targetTextTextBox.Focus();
-                */
-
-                addWordPair(targetTextTextBox.Text, newTextTextBox.Text, false);
-            }
         }
 
         private void replaceText()
@@ -99,16 +68,6 @@ namespace TextReplacer
 
         void WizardFriendly.addWordPair_Wizard(string targetText, string newText)
         {
-            /*
-            WordPair wp = new WordPair(targetText, newText);
-            pairs.Add(wp);
-            Label l = new Label();
-            l.Text = wp.target + " -> " + wp.newText;
-            l.Width = l.Text.Length * 10;
-            int count = wordPairPanel.Controls.Count;
-            l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
-            wordPairPanel.Controls.Add(l);
-            */
             addWordPair(targetText, newText, true);
         }
 
@@ -133,19 +92,35 @@ namespace TextReplacer
             pairs.Remove(wp);
         }
 
+        void WizardFriendly.addFile_Wizard(string path)
+        {
+
+        }
+
+        void WizardFriendly.removeFile_Wizard(VisualFile vf)
+        {
+
+        }
+
         void addWordPair(string targetText, string newText, bool fromWizard)
         {
-            WordPair wp = new WordPair(targetTextTextBox.Text, newTextTextBox.Text);
-            pairs.Add(wp);
-            Label l = new Label();
-            l.Text = wp.target + " -> " + wp.newText;
-            l.Width = l.Text.Length * 10;
+            if(targetText.Length <= 0 || newText.Length <= 0)
+            {
+                return;
+            }
 
-            wp.MakeVisual(ref wordPairPanel, this);
+            if (!newText.Contains(targetText))
+            {
+                WordPair wp = new WordPair(targetText, newText);
 
-            int count = wordPairPanel.Controls.Count;
-            l.SetBounds(l.Bounds.X, count * l.Height + 15, l.Width, l.Height);
-            //wordPairPanel.Controls.Add(l);
+                wp.MakeVisual(ref wordPairPanel, this);
+
+                pairs.Add(wp);
+            }
+            else
+            {
+                MessageBox.Show("The new text cannot contain the old text", "Error");
+            }
 
             if (!fromWizard)
             {
@@ -159,6 +134,16 @@ namespace TextReplacer
         {
             WordPairWizard wpw = new WordPairWizard(this);
             wpw.ShowDialog();
+        }
+
+        private void generalKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addWordPair(targetTextTextBox.Text, newTextTextBox.Text, false);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
     }// end class ReplaceInEditorView
 }// end namespace TextReplacer
