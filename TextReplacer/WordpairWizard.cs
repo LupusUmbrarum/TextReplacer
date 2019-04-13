@@ -149,5 +149,11 @@ namespace TextReplacer
 
             addWordPairs();
         }
+
+        private void genericOnClick(object sender, EventArgs e)
+        {
+            ((TextBox)sender).SelectAll();
+            ((TextBox)sender).Focus();
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextReplacer));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.inFileTab = new System.Windows.Forms.TabPage();
             this.inEditorTab = new System.Windows.Forms.TabPage();
@@ -71,6 +72,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.tabControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TextReplacer";
             this.Text = "TextReplacer";
             this.tabControl.ResumeLayout(false);

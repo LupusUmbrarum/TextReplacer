@@ -21,6 +21,17 @@ namespace TextReplacer
         public ReplaceInFileView()
         {
             InitializeComponent();
+            filePathPanel.HorizontalScroll.Enabled = false;
+            filePathPanel.HorizontalScroll.Maximum = 0;
+            filePathPanel.AutoScroll = false;
+            filePathPanel.VerticalScroll.Visible = true;
+            filePathPanel.AutoScroll = true;
+
+            wordPairPanel.HorizontalScroll.Enabled = false;
+            wordPairPanel.HorizontalScroll.Maximum = 0;
+            wordPairPanel.AutoScroll = false;
+            wordPairPanel.VerticalScroll.Visible = true;
+            wordPairPanel.AutoScroll = true;
         }
 
         private void addFilesButton_Click(object sender, EventArgs e)
@@ -34,7 +45,7 @@ namespace TextReplacer
                     try
                     {
                         VisualFile vf = new VisualFile(file);
-                        vf.MakeVisual(ref filePathPanel, this, ref ofd);
+                        vf.MakeVisual(ref filePathPanel, this, ofd);
                         files.Add(vf);
                     }
                     catch (Exception ex) { ex.GetBaseException(); }
@@ -77,6 +88,15 @@ namespace TextReplacer
             if (files.Count <= 0 || pairs.Count <= 0)
             {
                 return;
+            }
+
+            foreach(WordPair pair in pairs)
+            {
+                if((matchCase && pair.newText.Contains(pair.target)) || pair.newText.ToUpper().Contains(pair.target.ToUpper()))
+                {
+                    MessageBox.Show("The new text cannot contain the old text", "Error");
+                    return;
+                }
             }
 
             if(createNew)
@@ -135,15 +155,31 @@ namespace TextReplacer
 
                                     for (int x = 0; x < lines.Length; x++)
                                     {
-                                        while (lines[x].Contains(pair.target))
+                                        if(matchCase)
                                         {
-                                            // replace
-                                            string cline = lines[x];
-                                            int tlen = pair.target.Length;
-                                            string a = cline.Substring(0, cline.IndexOf(pair.target));
-                                            string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
+                                            while (lines[x].Contains(pair.target))
+                                            {
+                                                // replace
+                                                string cline = lines[x];
+                                                int tlen = pair.target.Length;
+                                                string a = cline.Substring(0, cline.IndexOf(pair.target));
+                                                string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
 
-                                            lines[x] = a + pair.newText + b;
+                                                lines[x] = a + pair.newText + b;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
+                                            {
+                                                // replace
+                                                string cline = lines[x];
+                                                int tlen = pair.target.Length;
+                                                string a = cline.ToUpper().Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
+                                                string b = cline.ToUpper().Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + pair.target.Length);
+
+                                                lines[x] = a + pair.newText + b;
+                                            }
                                         }
                                     }
                                 }
@@ -152,7 +188,11 @@ namespace TextReplacer
 
                             if (nameOnCreate && file.path.Substring(file.path.Length - 4) == ".txt")
                             {
-                                File.WriteAllLines(SaveOnCreate(file.path), lines);
+                                try
+                                {
+                                    File.WriteAllLines(SaveOnCreate(file.path), lines);
+                                }
+                                catch(Exception ex) { ex.GetBaseException(); }
                             }
                             else
                             {
@@ -182,15 +222,31 @@ namespace TextReplacer
 
                                 for (int x = 0; x < lines.Length; x++)
                                 {
-                                    while (lines[x].Contains(pair.target))
+                                    if (matchCase)
                                     {
-                                        // replace
-                                        string cline = lines[x];
-                                        int tlen = pair.target.Length;
-                                        string a = cline.Substring(0, cline.IndexOf(pair.target));
-                                        string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
+                                        while (lines[x].Contains(pair.target))
+                                        {
+                                            // replace
+                                            string cline = lines[x];
+                                            int tlen = pair.target.Length;
+                                            string a = cline.Substring(0, cline.IndexOf(pair.target));
+                                            string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
 
-                                        lines[x] = a + pair.newText + b;
+                                            lines[x] = a + pair.newText + b;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
+                                        {
+                                            // replace
+                                            string cline = lines[x];
+                                            int tlen = pair.target.Length;
+                                            string a = cline.ToUpper().Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
+                                            string b = cline.ToUpper().Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + pair.target.Length);
+
+                                            lines[x] = a + pair.newText + b;
+                                        }
                                     }
                                 }
                             }
@@ -231,19 +287,39 @@ namespace TextReplacer
 
                             for (int x = 0; x < lines.Length; x++)
                             {
-                                while (lines[x].Contains(pair.target))
+                                if (matchCase)
                                 {
-                                    // replace
-                                    string cline = lines[x];
-                                    int tlen = pair.target.Length;
-                                    string a = cline.Substring(0, cline.IndexOf(pair.target));
-                                    string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
+                                    while (lines[x].Contains(pair.target))
+                                    {
+                                        // replace
+                                        string cline = lines[x];
+                                        int tlen = pair.target.Length;
+                                        string a = cline.Substring(0, cline.IndexOf(pair.target));
+                                        string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
 
-                                    lines[x] = a + pair.newText + b;
+                                        lines[x] = a + pair.newText + b;
+                                    }
+                                }
+                                else
+                                {
+                                    while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
+                                    {
+                                        // replace
+                                        string cline = lines[x];
+                                        int tlen = pair.target.Length;
+                                        string a = cline.ToUpper().Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
+                                        string b = cline.ToUpper().Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + pair.target.Length);
+
+                                        lines[x] = a + pair.newText + b;
+                                    }
                                 }
                             }
 
-                            File.WriteAllLines(file.path, lines);
+                            try
+                            {
+                                File.WriteAllLines(file.path, lines);
+                            }
+                            catch(Exception ex) { ex.GetBaseException(); }
                         }
                         catch (Exception ex) { ex.GetBaseException(); }
                     }
@@ -365,6 +441,23 @@ namespace TextReplacer
             }
         }
 
+        private void onNewTextBoxClick(object sender, EventArgs e)
+        {
+            newTextTextBox.SelectAll();
+            newTextTextBox.Focus();
+        }
+
+        private void matchCaseCheckedChanged(object sender, EventArgs e)
+        {
+            matchCase = matchCaseCheckBox.Checked;
+        }
+
+        private void onTargetBoxClick(object sender, EventArgs e)
+        {
+            targetTextTextBox.SelectAll();
+            targetTextTextBox.Focus();
+        }
+
         private void byGroupCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             byGroup = byGroupCheckBox.Checked;
@@ -373,11 +466,6 @@ namespace TextReplacer
         private void onCreateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             nameOnCreate = onCreateCheckBox.Checked;
-        }
-
-        private void matchCaseCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            matchCase = matchCaseCheckBox.Checked;
         }
     }
 }

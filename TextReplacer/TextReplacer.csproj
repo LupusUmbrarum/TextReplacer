@@ -150,5 +150,8 @@
   <ItemGroup>
     <None Include="Resources\x image2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\tr_DYt_icon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

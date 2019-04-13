@@ -129,6 +129,7 @@
             this.targetTextTextBox.Name = "targetTextTextBox";
             this.targetTextTextBox.Size = new System.Drawing.Size(86, 20);
             this.targetTextTextBox.TabIndex = 18;
+            this.targetTextTextBox.Click += new System.EventHandler(this.onTargetBoxClick);
             this.targetTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // newTextTextBox
@@ -137,6 +138,7 @@
             this.newTextTextBox.Name = "newTextTextBox";
             this.newTextTextBox.Size = new System.Drawing.Size(86, 20);
             this.newTextTextBox.TabIndex = 19;
+            this.newTextTextBox.Click += new System.EventHandler(this.onNewTextBoxClick);
             this.newTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // addWordPairButton
@@ -238,21 +240,21 @@
             // matchCaseCheckBox
             // 
             this.matchCaseCheckBox.AutoSize = true;
-            this.matchCaseCheckBox.Location = new System.Drawing.Point(15, 300);
+            this.matchCaseCheckBox.Location = new System.Drawing.Point(15, 314);
             this.matchCaseCheckBox.Name = "matchCaseCheckBox";
-            this.matchCaseCheckBox.Size = new System.Drawing.Size(82, 17);
-            this.matchCaseCheckBox.TabIndex = 44;
-            this.matchCaseCheckBox.Text = "Match case";
+            this.matchCaseCheckBox.Size = new System.Drawing.Size(83, 17);
+            this.matchCaseCheckBox.TabIndex = 41;
+            this.matchCaseCheckBox.Text = "Match Case";
             this.matchCaseCheckBox.UseVisualStyleBackColor = true;
-            this.matchCaseCheckBox.CheckedChanged += new System.EventHandler(this.matchCaseCheckBox_CheckedChanged);
+            this.matchCaseCheckBox.CheckedChanged += new System.EventHandler(this.matchCaseCheckedChanged);
             // 
             // ReplaceInFileView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.matchCaseCheckBox);
             this.Controls.Add(this.onCreateCheckBox);
             this.Controls.Add(this.byGroupCheckBox);
+            this.Controls.Add(this.matchCaseCheckBox);
             this.Controls.Add(this.createNewCheckBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.wizardButton);

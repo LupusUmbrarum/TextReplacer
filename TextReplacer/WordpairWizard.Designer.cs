@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.incrementalTab = new System.Windows.Forms.TabPage();
-            this.targetTextTextBox = new System.Windows.Forms.TextBox();
-            this.endNumTextBox = new System.Windows.Forms.TextBox();
-            this.startNumTextBox = new System.Windows.Forms.TextBox();
-            this.stepNumTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.addPairsButton = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.stepNumTextBox = new System.Windows.Forms.TextBox();
+            this.startNumTextBox = new System.Windows.Forms.TextBox();
+            this.endNumTextBox = new System.Windows.Forms.TextBox();
+            this.targetTextTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.incrementalTab.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -72,109 +72,15 @@
             this.incrementalTab.Text = "Incremental";
             this.incrementalTab.UseVisualStyleBackColor = true;
             // 
-            // targetTextTextBox
+            // addPairsButton
             // 
-            this.targetTextTextBox.Location = new System.Drawing.Point(63, 85);
-            this.targetTextTextBox.Name = "targetTextTextBox";
-            this.targetTextTextBox.Size = new System.Drawing.Size(86, 20);
-            this.targetTextTextBox.TabIndex = 30;
-            this.targetTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
-            // 
-            // endNumTextBox
-            // 
-            this.endNumTextBox.Location = new System.Drawing.Point(194, 111);
-            this.endNumTextBox.Name = "endNumTextBox";
-            this.endNumTextBox.Size = new System.Drawing.Size(86, 20);
-            this.endNumTextBox.TabIndex = 33;
-            this.endNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
-            // 
-            // startNumTextBox
-            // 
-            this.startNumTextBox.Location = new System.Drawing.Point(63, 111);
-            this.startNumTextBox.Name = "startNumTextBox";
-            this.startNumTextBox.Size = new System.Drawing.Size(86, 20);
-            this.startNumTextBox.TabIndex = 32;
-            this.startNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
-            // 
-            // stepNumTextBox
-            // 
-            this.stepNumTextBox.Location = new System.Drawing.Point(63, 137);
-            this.stepNumTextBox.Name = "stepNumTextBox";
-            this.stepNumTextBox.Size = new System.Drawing.Size(86, 20);
-            this.stepNumTextBox.TabIndex = 34;
-            this.stepNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 88);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "Replace:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 38;
-            this.label3.Text = "Begin:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(159, 114);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 13);
-            this.label4.TabIndex = 39;
-            this.label4.Text = "End:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 140);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 40;
-            this.label5.Text = "Step";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 3);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(291, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Note: wherever you want to replace a number, put <_num_>";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(360, 13);
-            this.label7.TabIndex = 41;
-            this.label7.Text = "For example: to replace \"HG014\" with \"HG015\", \"HG016\", and \"HG017\", ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 35);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(286, 13);
-            this.label8.TabIndex = 42;
-            this.label8.Text = "put HG0<_num_> in the Replace box, 14 in the Begin box, ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 48);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(275, 13);
-            this.label9.TabIndex = 43;
-            this.label9.Text = "and 17 in the End box. Finally, put 1 in the Step box, this ";
+            this.addPairsButton.Location = new System.Drawing.Point(63, 163);
+            this.addPairsButton.Name = "addPairsButton";
+            this.addPairsButton.Size = new System.Drawing.Size(75, 23);
+            this.addPairsButton.TabIndex = 45;
+            this.addPairsButton.Text = "Add Pairs";
+            this.addPairsButton.UseVisualStyleBackColor = true;
+            this.addPairsButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // label10
             // 
@@ -185,15 +91,113 @@
             this.label10.TabIndex = 44;
             this.label10.Text = "will indicate that the numbers will increase by one each time, from 14 to 17";
             // 
-            // addPairsButton
+            // label9
             // 
-            this.addPairsButton.Location = new System.Drawing.Point(63, 163);
-            this.addPairsButton.Name = "addPairsButton";
-            this.addPairsButton.Size = new System.Drawing.Size(75, 23);
-            this.addPairsButton.TabIndex = 45;
-            this.addPairsButton.Text = "Add Pairs";
-            this.addPairsButton.UseVisualStyleBackColor = true;
-            this.addPairsButton.Click += new System.EventHandler(this.button1_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 48);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(275, 13);
+            this.label9.TabIndex = 43;
+            this.label9.Text = "and 17 in the End box. Finally, put 1 in the Step box, this ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 35);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(286, 13);
+            this.label8.TabIndex = 42;
+            this.label8.Text = "put HG0<_num_> in the Replace box, 14 in the Begin box, ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(360, 13);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "For example: to replace \"HG014\" with \"HG015\", \"HG016\", and \"HG017\", ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(291, 13);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "Note: wherever you want to replace a number, put <_num_>";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 140);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "Step";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(159, 114);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 13);
+            this.label4.TabIndex = 39;
+            this.label4.Text = "End:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "Begin:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Replace:";
+            // 
+            // stepNumTextBox
+            // 
+            this.stepNumTextBox.Location = new System.Drawing.Point(63, 137);
+            this.stepNumTextBox.Name = "stepNumTextBox";
+            this.stepNumTextBox.Size = new System.Drawing.Size(86, 20);
+            this.stepNumTextBox.TabIndex = 34;
+            this.stepNumTextBox.Click += new System.EventHandler(this.genericOnClick);
+            this.stepNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
+            // 
+            // startNumTextBox
+            // 
+            this.startNumTextBox.Location = new System.Drawing.Point(63, 111);
+            this.startNumTextBox.Name = "startNumTextBox";
+            this.startNumTextBox.Size = new System.Drawing.Size(86, 20);
+            this.startNumTextBox.TabIndex = 32;
+            this.startNumTextBox.Click += new System.EventHandler(this.genericOnClick);
+            this.startNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
+            // 
+            // endNumTextBox
+            // 
+            this.endNumTextBox.Location = new System.Drawing.Point(194, 111);
+            this.endNumTextBox.Name = "endNumTextBox";
+            this.endNumTextBox.Size = new System.Drawing.Size(86, 20);
+            this.endNumTextBox.TabIndex = 33;
+            this.endNumTextBox.Click += new System.EventHandler(this.genericOnClick);
+            this.endNumTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
+            // 
+            // targetTextTextBox
+            // 
+            this.targetTextTextBox.Location = new System.Drawing.Point(63, 85);
+            this.targetTextTextBox.Name = "targetTextTextBox";
+            this.targetTextTextBox.Size = new System.Drawing.Size(86, 20);
+            this.targetTextTextBox.TabIndex = 30;
+            this.targetTextTextBox.Click += new System.EventHandler(this.genericOnClick);
+            this.targetTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // tabControl1
             // 

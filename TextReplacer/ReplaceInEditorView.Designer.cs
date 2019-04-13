@@ -50,10 +50,11 @@
             this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
             this.richTextBox.WordWrap = false;
+            this.richTextBox.Click += new System.EventHandler(this.genericOnClick);
             // 
             // replaceTextButton
             // 
-            this.replaceTextButton.Location = new System.Drawing.Point(320, 398);
+            this.replaceTextButton.Location = new System.Drawing.Point(320, 399);
             this.replaceTextButton.Name = "replaceTextButton";
             this.replaceTextButton.Size = new System.Drawing.Size(84, 25);
             this.replaceTextButton.TabIndex = 26;
@@ -72,7 +73,7 @@
             // 
             // clearWordPairButton
             // 
-            this.clearWordPairButton.Location = new System.Drawing.Point(343, 10);
+            this.clearWordPairButton.Location = new System.Drawing.Point(343, 11);
             this.clearWordPairButton.Name = "clearWordPairButton";
             this.clearWordPairButton.Size = new System.Drawing.Size(61, 25);
             this.clearWordPairButton.TabIndex = 33;
@@ -83,7 +84,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(149, 15);
+            this.label2.Location = new System.Drawing.Point(149, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 32;
@@ -92,7 +93,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 15);
+            this.label1.Location = new System.Drawing.Point(1, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 30;
@@ -100,23 +101,26 @@
             // 
             // targetTextTextBox
             // 
-            this.targetTextTextBox.Location = new System.Drawing.Point(57, 12);
+            this.targetTextTextBox.Location = new System.Drawing.Point(57, 13);
             this.targetTextTextBox.Name = "targetTextTextBox";
             this.targetTextTextBox.Size = new System.Drawing.Size(86, 20);
             this.targetTextTextBox.TabIndex = 28;
+            this.targetTextTextBox.Click += new System.EventHandler(this.genericOnClick);
             this.targetTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // newTextTextBox
             // 
-            this.newTextTextBox.Location = new System.Drawing.Point(184, 12);
+            this.newTextTextBox.Location = new System.Drawing.Point(184, 13);
             this.newTextTextBox.Name = "newTextTextBox";
             this.newTextTextBox.Size = new System.Drawing.Size(86, 20);
             this.newTextTextBox.TabIndex = 29;
+            this.newTextTextBox.Click += new System.EventHandler(this.genericOnClick);
+            this.newTextTextBox.TextChanged += new System.EventHandler(this.newTextTextBox_TextChanged);
             this.newTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
             // 
             // addWordPairButton
             // 
-            this.addWordPairButton.Location = new System.Drawing.Point(276, 10);
+            this.addWordPairButton.Location = new System.Drawing.Point(276, 11);
             this.addWordPairButton.Name = "addWordPairButton";
             this.addWordPairButton.Size = new System.Drawing.Size(61, 25);
             this.addWordPairButton.TabIndex = 31;
@@ -135,7 +139,7 @@
             // 
             // wizardButton
             // 
-            this.wizardButton.Location = new System.Drawing.Point(17, 398);
+            this.wizardButton.Location = new System.Drawing.Point(19, 399);
             this.wizardButton.Name = "wizardButton";
             this.wizardButton.Size = new System.Drawing.Size(75, 23);
             this.wizardButton.TabIndex = 35;

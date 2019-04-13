@@ -17,6 +17,12 @@ namespace TextReplacer
         public ReplaceInEditorView()
         {
             InitializeComponent();
+
+            wordPairPanel.HorizontalScroll.Enabled = false;
+            wordPairPanel.HorizontalScroll.Maximum = 0;
+            wordPairPanel.AutoScroll = false;
+            wordPairPanel.VerticalScroll.Visible = true;
+            wordPairPanel.AutoScroll = true;
         }
 
         private void addWordPairButton_Click(object sender, EventArgs e)
@@ -144,6 +150,27 @@ namespace TextReplacer
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void genericOnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ((TextBox)sender).SelectAll();
+                ((TextBox)sender).Focus();
+            }
+            catch(InvalidCastException icex)
+            {
+                ((RichTextBox)sender).SelectAll();
+                ((RichTextBox)sender).Focus();
+                icex.GetBaseException();
+            }
+            catch(Exception ex) { ex.GetBaseException(); }
+        }
+
+        private void newTextTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }// end class ReplaceInEditorView
 }// end namespace TextReplacer

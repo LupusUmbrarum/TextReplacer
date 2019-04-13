@@ -23,7 +23,7 @@ namespace TextReplacer
             this.path = path;
         }
 
-        public void MakeVisual(ref Panel owningPanel, WizardFriendly parent, ref OpenFileDialog ofd)
+        public void MakeVisual(ref Panel owningPanel, WizardFriendly parent, OpenFileDialog ofd)
         {
             if (beenMadeVisual)
             {
@@ -38,17 +38,17 @@ namespace TextReplacer
 
             panel = new Panel();
             panel.BackColor = Color.Gray;
-            panel.SetBounds(0, count * 25, owningPanel.Width - 4, 25);
+            panel.SetBounds(0, count * 25, owningPanel.Width - 21, 25);
 
             pathBox = new TextBox();
-            pathBox.SetBounds(5, panel.Height / 2 - pathBox.Height / 2, owningPanel.Width * 7 / 8 - 3, pathBox.Height);
+            pathBox.SetBounds(5, panel.Height / 2 - pathBox.Height / 2, panel.Width * 7 / 8, pathBox.Height);
             pathBox.Text = path;
-            pathBox.GotFocus += new EventHandler(this.editPath);
+            pathBox.Click += new EventHandler(this.editPath);
             panel.Controls.Add(pathBox);
 
             remove = new Button();
             int removeHeight = 25;
-            remove.SetBounds(panel.Width - 30, panel.Height / 2 - removeHeight / 2 - 1, 25, removeHeight);
+            remove.SetBounds(panel.Width - 30, panel.Height / 2 - removeHeight / 2 - 2, 25, removeHeight);
             remove.BackgroundImageLayout = ImageLayout.Stretch;
             remove.BackgroundImage = Properties.Resources.x_image2;
             remove.Click += new EventHandler(this.removeButtonHandler);
@@ -61,13 +61,20 @@ namespace TextReplacer
 
         private void editPath(object sender, EventArgs e)
         {
-            ofd.Multiselect = false;
+            OpenFileDialog tofd = new OpenFileDialog();
 
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if(ofd != null)
+            {
+                tofd.FileName = ofd.FileName;
+            }
+
+            tofd.Multiselect = false;
+
+            if (tofd.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    this.path = ofd.FileName;
+                    this.path = tofd.FileName;
                     pathBox.Text = path;
                 }
                 catch (Exception ex) { ex.GetBaseException(); }

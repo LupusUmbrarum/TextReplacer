@@ -43,19 +43,21 @@ namespace TextReplacer
 
             panel = new Panel();
             panel.BackColor = Color.Gray;
-            panel.SetBounds(0, count * 25, owningPanel.Width - 4, 25);
+            panel.SetBounds(0, count * 25, owningPanel.Width - 21, 25);
 
             groupBox = new TextBox();
             groupBox.TextAlign = HorizontalAlignment.Left;
             groupBox.Text = group;
             groupBox.SetBounds(5, panel.Height / 2 - groupBox.Height / 2, 25, groupBox.Height);
             groupBox.TextChanged += editGroup;
+            groupBox.Click += this.onGroupBoxFocus;
             panel.Controls.Add(groupBox);
 
             targetBox = new TextBox();
             targetBox.SetBounds(groupBox.Location.X + groupBox.Width + 10, panel.Height / 2 - targetBox.Height / 2, owningPanel.Width / 3, targetBox.Height);
             targetBox.Text = target;
             targetBox.TextChanged += this.editWords;
+            targetBox.Click += this.onTargetBoxFocus;
             panel.Controls.Add(targetBox);
 
             Label arrow = new Label();
@@ -67,6 +69,7 @@ namespace TextReplacer
             newBox.SetBounds(arrow.Location.X + arrow.Width, panel.Height / 2 - newBox.Height / 2, owningPanel.Width / 3, newBox.Height);
             newBox.Text = newText;
             newBox.TextChanged += this.editWords;
+            newBox.Click += this.onNewBoxFocus;
             panel.Controls.Add(newBox);
 
             remove = new Button();
@@ -112,6 +115,24 @@ namespace TextReplacer
                     group = groupNum.ToString();
                 }
             }
+        }
+
+        void onGroupBoxFocus(object sender, EventArgs e)
+        {
+            groupBox.SelectAll();
+            groupBox.Focus();
+        }
+
+        void onTargetBoxFocus(object sender, EventArgs e)
+        {
+            targetBox.SelectAll();
+            targetBox.Focus();
+        }
+
+        void onNewBoxFocus(object sender, EventArgs e)
+        {
+            newBox.SelectAll();
+            newBox.Focus();
         }
     }
 }
