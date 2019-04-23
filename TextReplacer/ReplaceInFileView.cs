@@ -21,6 +21,7 @@ namespace TextReplacer
         public ReplaceInFileView()
         {
             InitializeComponent();
+
             filePathPanel.HorizontalScroll.Enabled = false;
             filePathPanel.HorizontalScroll.Maximum = 0;
             filePathPanel.AutoScroll = false;
