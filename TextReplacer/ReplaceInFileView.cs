@@ -100,6 +100,8 @@ namespace TextReplacer
                 }
             }
 
+			int numChanges = 0;
+
             if(createNew)
             {
                 if(byGroup)
@@ -164,24 +166,28 @@ namespace TextReplacer
                                                 string cline = lines[x];
                                                 int tlen = pair.target.Length;
                                                 string a = cline.Substring(0, cline.IndexOf(pair.target));
-                                                string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
+                                                string b = cline.Substring(cline.IndexOf(pair.target) + tlen);
 
                                                 lines[x] = a + pair.newText + b;
+
+												numChanges++;
                                             }
                                         }
                                         else
                                         {
-                                            while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
-                                            {
-                                                // replace
-                                                string cline = lines[x];
-                                                int tlen = pair.target.Length;
-                                                string a = cline.ToUpper().Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
-                                                string b = cline.ToUpper().Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + pair.target.Length);
+											while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
+											{
+												// replace
+												string cline = lines[x];
+												int tlen = pair.target.Length;
+												string a = cline.Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
+												string b = cline.Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + tlen);
 
-                                                lines[x] = a + pair.newText + b;
-                                            }
-                                        }
+												lines[x] = a + pair.newText + b;
+
+												numChanges++;
+											}
+										}
                                     }
                                 }
                                 catch (Exception ex) { ex.GetBaseException(); }
@@ -231,24 +237,28 @@ namespace TextReplacer
                                             string cline = lines[x];
                                             int tlen = pair.target.Length;
                                             string a = cline.Substring(0, cline.IndexOf(pair.target));
-                                            string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
+                                            string b = cline.Substring(cline.IndexOf(pair.target) + tlen);
 
                                             lines[x] = a + pair.newText + b;
-                                        }
+
+											numChanges++;
+										}
                                     }
                                     else
                                     {
-                                        while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
-                                        {
-                                            // replace
-                                            string cline = lines[x];
-                                            int tlen = pair.target.Length;
-                                            string a = cline.ToUpper().Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
-                                            string b = cline.ToUpper().Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + pair.target.Length);
+										while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
+										{
+											// replace
+											string cline = lines[x];
+											int tlen = pair.target.Length;
+											string a = cline.Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
+											string b = cline.Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + tlen);
 
-                                            lines[x] = a + pair.newText + b;
-                                        }
-                                    }
+											lines[x] = a + pair.newText + b;
+
+											numChanges++;
+										}
+									}
                                 }
                             }
                             catch (Exception ex) { ex.GetBaseException(); }
@@ -296,24 +306,28 @@ namespace TextReplacer
                                         string cline = lines[x];
                                         int tlen = pair.target.Length;
                                         string a = cline.Substring(0, cline.IndexOf(pair.target));
-                                        string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
+                                        string b = cline.Substring(cline.IndexOf(pair.target) + tlen);
 
                                         lines[x] = a + pair.newText + b;
-                                    }
+
+										numChanges++;
+									}
                                 }
                                 else
                                 {
-                                    while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
-                                    {
-                                        // replace
-                                        string cline = lines[x];
-                                        int tlen = pair.target.Length;
-                                        string a = cline.ToUpper().Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
-                                        string b = cline.ToUpper().Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + pair.target.Length);
+									while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
+									{
+										// replace
+										string cline = lines[x];
+										int tlen = pair.target.Length;
+										string a = cline.Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
+										string b = cline.Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + tlen);
 
-                                        lines[x] = a + pair.newText + b;
-                                    }
-                                }
+										lines[x] = a + pair.newText + b;
+
+										numChanges++;
+									}
+								}
                             }
 
                             try
@@ -327,7 +341,7 @@ namespace TextReplacer
                 }
             }
 
-            MessageBox.Show("Finished");
+            MessageBox.Show("Finished\n" + numChanges.ToString() + " changes made.");
         }
 
         string SaveOnCreate(string str)
