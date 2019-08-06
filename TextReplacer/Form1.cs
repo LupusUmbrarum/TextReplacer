@@ -16,7 +16,7 @@ namespace TextReplacer
         private List<string> files = new List<string>();
         private List<WordPair> pairs = new List<WordPair>();
 
-        private string version = "v1.1";
+        private string version = "v1.2";
 
         public TextReplacer()
         {

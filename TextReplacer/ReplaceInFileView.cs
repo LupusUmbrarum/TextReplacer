@@ -43,13 +43,7 @@ namespace TextReplacer
             {
                 foreach (String file in ofd.FileNames)
                 {
-                    try
-                    {
-                        VisualFile vf = new VisualFile(file);
-                        vf.MakeVisual(ref filePathPanel, this, ofd);
-                        files.Add(vf);
-                    }
-                    catch (Exception ex) { ex.GetBaseException(); }
+					addVisualFile(file);
                 }
             }
         }
@@ -126,7 +120,6 @@ namespace TextReplacer
                     // create a copy of the wordpair list
                     WordPair[] sortedPairs = pairs.ToArray();
 
-
                     // sort the pairs by groupnumber
                     for(int i = 0; i < sortedPairs.Length - 1; i++)
                     {
@@ -178,7 +171,7 @@ namespace TextReplacer
                                 catch (Exception ex) { ex.GetBaseException(); }
                             }
 
-                            if (nameOnCreate && file.path.Substring(file.path.Length - 4) == ".txt")
+                            if (nameOnCreate /*&& file.path.Substring(file.path.Length - 4) == ".txt"*/)
                             {
                                 try
                                 {
@@ -199,7 +192,7 @@ namespace TextReplacer
                 }
                 else
                 {
-                    // change every word pair in every file without creating an output file
+                    // change every word pair in every file without creating a new output file
                     for(int i = 0; i < files.Count; i++)
                     {
                         string file = files[i].path;
@@ -210,14 +203,12 @@ namespace TextReplacer
                         {
                             try
                             {
-                                string extension = file.Substring(file.LastIndexOf('.'));
-
 								replaceTextByLine(ref numChanges, lines, pair);
 							}
                             catch (Exception ex) { ex.GetBaseException(); }
                         }
 
-                        if (nameOnCreate && file.Substring(file.Length - 4) == ".txt")
+                        if (nameOnCreate /*&& file.Substring(file.Length - 4) == ".txt"*/)
                         {
                             try
                             {
@@ -238,15 +229,13 @@ namespace TextReplacer
             }
             else
             {
-                // change every word pair in every file without creating an output file
+                // change every word pair in every file without creating a new output file
                 foreach (WordPair pair in pairs)
                 {
                     foreach (VisualFile file in files)
                     {
                         try
                         {
-                            string extension = file.path.Substring(file.path.LastIndexOf('.'));
-
                             string[] lines = File.ReadAllLines(file.path);
 
 							replaceTextByLine(ref numChanges, lines, pair);
@@ -264,6 +253,11 @@ namespace TextReplacer
 
             MessageBox.Show("Finished\n" + numChanges.ToString() + " changes made.");
         }
+
+		void replaceTextByPair()
+		{
+
+		}
 
 		/// <summary>
 		/// Does the actual replacing of text line by line
@@ -310,9 +304,22 @@ namespace TextReplacer
 
         string SaveOnCreate(string str)
         {
-            sfd.FileName = str;
+            sfd.FileName = str.Substring(str.LastIndexOf('\\') + 1);
 
-            sfd.Filter = "Text Documents (*.txt)|*.txt";
+			string extraExtension = str.Substring(str.LastIndexOf(".") + 1);
+			string capExtension = extraExtension.ToUpper();
+			string fullExtraExtension = capExtension + " (*." + extraExtension + ")|*." + extraExtension;
+			string normalExtension = "TXT (*.txt)|*.txt|All Files (*.*)|*.*";
+
+			if(capExtension != "TXT")
+			{
+				sfd.Filter = fullExtraExtension + "|" + normalExtension;
+				sfd.FilterIndex = 0;
+			}
+			else
+			{
+				sfd.Filter = normalExtension;
+			}
 
             if(sfd.ShowDialog() == DialogResult.OK)
             {
@@ -370,6 +377,17 @@ namespace TextReplacer
                 targetTextTextBox.Focus();
             }
         }
+
+		void addVisualFile(string file)
+		{
+			try
+			{
+				VisualFile vf = new VisualFile(file);
+				vf.MakeVisual(ref filePathPanel, this, ofd);
+				files.Add(vf);
+			}
+			catch (Exception ex) { ex.GetBaseException(); }
+		}
 
         void WizardFriendly.addFile_Wizard(string path)
         {
@@ -431,7 +449,22 @@ namespace TextReplacer
             matchCase = matchCaseCheckBox.Checked;
         }
 
-        private void onTargetBoxClick(object sender, EventArgs e)
+		private void filePathPanel_DragDrop(object sender, DragEventArgs e)
+		{
+			string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+
+			foreach(String file in fileList)
+			{
+				addVisualFile(file);
+			}
+		}
+
+		private void filePathPanel_DragEnter(object sender, DragEventArgs e)
+		{
+			e.Effect = DragDropEffects.All;
+		}
+
+		private void onTargetBoxClick(object sender, EventArgs e)
         {
             targetTextTextBox.SelectAll();
             targetTextTextBox.Focus();

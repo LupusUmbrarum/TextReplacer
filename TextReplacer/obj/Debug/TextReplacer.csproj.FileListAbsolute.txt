@@ -40,3 +40,16 @@ A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.ReplaceInFileView.res
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.WordPairWizard.resources
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.GenerateResource.cache
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.CoreCompileInputs.cache
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csprojAssemblyReference.cache
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.exe
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.pdb
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.exe.config
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.exe
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.pdb
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.TextReplacer.resources
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.Properties.Resources.resources
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.ReplaceInEditorView.resources
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.ReplaceInFileView.resources
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.WordPairWizard.resources
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.GenerateResource.cache
+C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.CoreCompileInputs.cache
