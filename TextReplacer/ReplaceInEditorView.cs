@@ -48,6 +48,8 @@ namespace TextReplacer
                 return;
             }
 
+			int numChanges = 0;
+
             foreach (WordPair pair in pairs)
             {
                 string[] lines = richTextBox.Lines;
@@ -58,19 +60,20 @@ namespace TextReplacer
                     {
                         // replace
                         string cline = lines[x];
-                        int tlen = pair.target.Length;
                         string a = cline.Substring(0, cline.IndexOf(pair.target));
                         string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
 
                         lines[x] = a + pair.newText + b;
+
+						numChanges++;
                     }
                 }
 
                 richTextBox.Lines = lines;
             }
 
-            MessageBox.Show("Finished");
-        }
+			MessageBox.Show("Finished\n" + numChanges.ToString() + " changes made.");
+		}
 
         void WizardFriendly.addWordPair_Wizard(string targetText, string newText)
         {

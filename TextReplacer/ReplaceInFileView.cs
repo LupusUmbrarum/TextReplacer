@@ -50,7 +50,12 @@ namespace TextReplacer
 
         private void clearFilesButton_Click(object sender, EventArgs e)
         {
-            filePathPanel.Controls.Clear();
+			if (!confirmAction("Are you sure you want to clear the list of Files?", "Confirm"))
+			{
+				return;
+			}
+
+			filePathPanel.Controls.Clear();
             files.Clear();
         }
 
@@ -61,6 +66,11 @@ namespace TextReplacer
 
         private void clearWordPairButton_Click(object sender, EventArgs e)
         {
+			if(!confirmAction("Are you sure you want to clear the list of Word Pairs?", "Confirm"))
+			{
+				return;
+			}
+
             wordPairPanel.Controls.Clear();
             pairs.Clear();
         }
@@ -418,8 +428,10 @@ namespace TextReplacer
         private void button1_Click(object sender, EventArgs e)
         {
             WordPairWizard wpw = new WordPairWizard(this);
-            wpw.ShowDialog();
-        }
+
+			wpw.ShowDialog();
+
+		}
 
         private void createNewCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -479,5 +491,17 @@ namespace TextReplacer
         {
             nameOnCreate = onCreateCheckBox.Checked;
         }
+
+		private bool confirmAction(string message, string caption)
+		{
+			DialogResult res = MessageBox.Show(this, message, caption, MessageBoxButtons.YesNoCancel);
+
+			if(res == DialogResult.Yes)
+			{
+				return true;
+			}
+
+			return false;
+		}
     }
 }

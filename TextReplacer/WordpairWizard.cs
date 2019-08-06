@@ -155,5 +155,10 @@ namespace TextReplacer
             ((TextBox)sender).SelectAll();
             ((TextBox)sender).Focus();
         }
-    }
+
+		private void okButton_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+	}
 }
