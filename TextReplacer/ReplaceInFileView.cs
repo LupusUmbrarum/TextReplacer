@@ -50,7 +50,7 @@ namespace TextReplacer
 
         private void clearFilesButton_Click(object sender, EventArgs e)
         {
-			if (!confirmAction("Are you sure you want to clear the list of Files?", "Confirm"))
+			if (files.Count > 0 && !confirmAction("Are you sure you want to clear the list of Files?", "Confirm"))
 			{
 				return;
 			}
@@ -66,7 +66,7 @@ namespace TextReplacer
 
         private void clearWordPairButton_Click(object sender, EventArgs e)
         {
-			if(!confirmAction("Are you sure you want to clear the list of Word Pairs?", "Confirm"))
+			if(pairs.Count > 0 && !confirmAction("Are you sure you want to clear the list of Word Pairs?", "Confirm"))
 			{
 				return;
 			}

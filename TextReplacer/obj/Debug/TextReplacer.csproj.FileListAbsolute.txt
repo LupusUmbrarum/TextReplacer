@@ -32,7 +32,6 @@ A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.pdb
 A:\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.exe.config
 A:\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.exe
 A:\GitHub\TextReplacer\TextReplacer\bin\Debug\TextReplacer.pdb
-A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.ResolveComReference.cache
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.TextReplacer.resources
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.Properties.Resources.resources
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.ReplaceInEditorView.resources
