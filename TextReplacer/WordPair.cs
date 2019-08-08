@@ -50,14 +50,14 @@ namespace TextReplacer
             groupBox.Text = group;
             groupBox.SetBounds(5, panel.Height / 2 - groupBox.Height / 2, 25, groupBox.Height);
             groupBox.TextChanged += editGroup;
-            groupBox.Click += this.onGroupBoxFocus;
+            //groupBox.Click += this.onGroupBoxFocus;
             panel.Controls.Add(groupBox);
 
             targetBox = new TextBox();
             targetBox.SetBounds(groupBox.Location.X + groupBox.Width + 10, panel.Height / 2 - targetBox.Height / 2, owningPanel.Width / 3, targetBox.Height);
             targetBox.Text = target;
             targetBox.TextChanged += this.editWords;
-            targetBox.Click += this.onTargetBoxFocus;
+            //targetBox.Click += this.onTargetBoxFocus;
             panel.Controls.Add(targetBox);
 
             Label arrow = new Label();
@@ -69,7 +69,7 @@ namespace TextReplacer
             newBox.SetBounds(arrow.Location.X + arrow.Width, panel.Height / 2 - newBox.Height / 2, owningPanel.Width / 3, newBox.Height);
             newBox.Text = newText;
             newBox.TextChanged += this.editWords;
-            newBox.Click += this.onNewBoxFocus;
+            //newBox.Click += this.onNewBoxFocus;
             panel.Controls.Add(newBox);
 
             remove = new Button();

@@ -17,6 +17,7 @@ namespace TextReplacer
         WizardFriendly parent;
         bool beenMadeVisual = false;
         OpenFileDialog ofd;
+		ToolTip tt;
 
         public VisualFile(string path)
         {
@@ -43,7 +44,8 @@ namespace TextReplacer
             pathBox = new TextBox();
             pathBox.SetBounds(5, panel.Height / 2 - pathBox.Height / 2, panel.Width * 7 / 8, pathBox.Height);
             pathBox.Text = path;
-            pathBox.Click += new EventHandler(this.editPath);
+			//pathBox.Click += new EventHandler(this.editPath);
+			pathBox.DoubleClick += new EventHandler(this.editPath);
             panel.Controls.Add(pathBox);
 
             remove = new Button();
@@ -56,7 +58,13 @@ namespace TextReplacer
 
             owningPanel.Controls.Add(panel);
 
-            beenMadeVisual = true;
+			setPosition();
+
+			tt = new ToolTip();
+
+			tt.SetToolTip(pathBox, "Double-click to show OpenFileDialog.");
+
+			beenMadeVisual = true;
         }
 
         private void editPath(object sender, EventArgs e)
@@ -79,11 +87,18 @@ namespace TextReplacer
                 }
                 catch (Exception ex) { ex.GetBaseException(); }
             }
+
+			setPosition();
         }
 
         private void removeButtonHandler(object sender, EventArgs e)
         {
             parent.removeFile_Wizard(this);
         }
+
+		private void setPosition()
+		{
+			pathBox.SelectionStart = pathBox.Text.Length - 1;
+		}
     }
 }

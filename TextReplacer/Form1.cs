@@ -13,7 +13,7 @@ namespace TextReplacer
 {
     public partial class TextReplacer : Form
     {
-        private string version = "v1.3";
+        private string version = "v1.4";
 
         public TextReplacer()
         {

@@ -107,7 +107,6 @@
 			this.targetTextTextBox.Name = "targetTextTextBox";
 			this.targetTextTextBox.Size = new System.Drawing.Size(86, 20);
 			this.targetTextTextBox.TabIndex = 28;
-			this.targetTextTextBox.Click += new System.EventHandler(this.genericOnClick);
 			this.targetTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
 			// 
 			// newTextTextBox
@@ -116,7 +115,6 @@
 			this.newTextTextBox.Name = "newTextTextBox";
 			this.newTextTextBox.Size = new System.Drawing.Size(86, 20);
 			this.newTextTextBox.TabIndex = 29;
-			this.newTextTextBox.Click += new System.EventHandler(this.genericOnClick);
 			this.newTextTextBox.TextChanged += new System.EventHandler(this.newTextTextBox_TextChanged);
 			this.newTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
 			// 
