@@ -13,10 +13,7 @@ namespace TextReplacer
 {
     public partial class TextReplacer : Form
     {
-        private List<string> files = new List<string>();
-        private List<WordPair> pairs = new List<WordPair>();
-
-        private string version = "v1.2";
+        private string version = "v1.3";
 
         public TextReplacer()
         {

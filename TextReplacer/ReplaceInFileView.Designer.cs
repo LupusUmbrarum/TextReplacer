@@ -55,10 +55,9 @@
 			// 
 			// addFilesButton
 			// 
-			this.addFilesButton.Location = new System.Drawing.Point(20, 17);
-			this.addFilesButton.Margin = new System.Windows.Forms.Padding(4);
+			this.addFilesButton.Location = new System.Drawing.Point(15, 14);
 			this.addFilesButton.Name = "addFilesButton";
-			this.addFilesButton.Size = new System.Drawing.Size(100, 31);
+			this.addFilesButton.Size = new System.Drawing.Size(75, 25);
 			this.addFilesButton.TabIndex = 14;
 			this.addFilesButton.Text = "Add File(s)";
 			this.addFilesButton.UseVisualStyleBackColor = true;
@@ -66,10 +65,9 @@
 			// 
 			// replaceTextButton
 			// 
-			this.replaceTextButton.Location = new System.Drawing.Point(901, 491);
-			this.replaceTextButton.Margin = new System.Windows.Forms.Padding(4);
+			this.replaceTextButton.Location = new System.Drawing.Point(676, 399);
 			this.replaceTextButton.Name = "replaceTextButton";
-			this.replaceTextButton.Size = new System.Drawing.Size(112, 31);
+			this.replaceTextButton.Size = new System.Drawing.Size(84, 25);
 			this.replaceTextButton.TabIndex = 13;
 			this.replaceTextButton.Text = "Replace Text";
 			this.replaceTextButton.UseVisualStyleBackColor = true;
@@ -82,29 +80,26 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(533, 55);
-			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label4.Location = new System.Drawing.Point(400, 45);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(228, 17);
+			this.label4.Size = new System.Drawing.Size(172, 13);
 			this.label4.TabIndex = 25;
 			this.label4.Text = "Word Pairs (TargetText->NewText)";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(21, 55);
-			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label3.Location = new System.Drawing.Point(16, 45);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(37, 17);
+			this.label3.Size = new System.Drawing.Size(28, 13);
 			this.label3.TabIndex = 24;
 			this.label3.Text = "Files";
 			// 
 			// clearWordPairButton
 			// 
-			this.clearWordPairButton.Location = new System.Drawing.Point(932, 14);
-			this.clearWordPairButton.Margin = new System.Windows.Forms.Padding(4);
+			this.clearWordPairButton.Location = new System.Drawing.Point(699, 11);
 			this.clearWordPairButton.Name = "clearWordPairButton";
-			this.clearWordPairButton.Size = new System.Drawing.Size(81, 31);
+			this.clearWordPairButton.Size = new System.Drawing.Size(61, 25);
 			this.clearWordPairButton.TabIndex = 23;
 			this.clearWordPairButton.Text = "Clear";
 			this.clearWordPairButton.UseVisualStyleBackColor = true;
@@ -113,49 +108,44 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(673, 20);
-			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label2.Location = new System.Drawing.Point(505, 16);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(36, 17);
+			this.label2.Size = new System.Drawing.Size(29, 13);
 			this.label2.TabIndex = 22;
 			this.label2.Text = "with:";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(476, 20);
-			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label1.Location = new System.Drawing.Point(357, 16);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(64, 17);
+			this.label1.Size = new System.Drawing.Size(50, 13);
 			this.label1.TabIndex = 20;
 			this.label1.Text = "Replace:";
 			// 
 			// targetTextTextBox
 			// 
-			this.targetTextTextBox.Location = new System.Drawing.Point(551, 16);
-			this.targetTextTextBox.Margin = new System.Windows.Forms.Padding(4);
+			this.targetTextTextBox.Location = new System.Drawing.Point(413, 13);
 			this.targetTextTextBox.Name = "targetTextTextBox";
-			this.targetTextTextBox.Size = new System.Drawing.Size(113, 22);
+			this.targetTextTextBox.Size = new System.Drawing.Size(86, 20);
 			this.targetTextTextBox.TabIndex = 18;
 			this.targetTextTextBox.Click += new System.EventHandler(this.onTargetBoxClick);
-			this.targetTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
+			this.targetTextTextBox.Enter += new System.EventHandler(this.onTargetBoxFocus);
 			// 
 			// newTextTextBox
 			// 
-			this.newTextTextBox.Location = new System.Drawing.Point(720, 16);
-			this.newTextTextBox.Margin = new System.Windows.Forms.Padding(4);
+			this.newTextTextBox.Location = new System.Drawing.Point(540, 13);
 			this.newTextTextBox.Name = "newTextTextBox";
-			this.newTextTextBox.Size = new System.Drawing.Size(113, 22);
+			this.newTextTextBox.Size = new System.Drawing.Size(86, 20);
 			this.newTextTextBox.TabIndex = 19;
 			this.newTextTextBox.Click += new System.EventHandler(this.onNewTextBoxClick);
 			this.newTextTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.generalKeyDown);
 			// 
 			// addWordPairButton
 			// 
-			this.addWordPairButton.Location = new System.Drawing.Point(843, 14);
-			this.addWordPairButton.Margin = new System.Windows.Forms.Padding(4);
+			this.addWordPairButton.Location = new System.Drawing.Point(632, 11);
 			this.addWordPairButton.Name = "addWordPairButton";
-			this.addWordPairButton.Size = new System.Drawing.Size(81, 31);
+			this.addWordPairButton.Size = new System.Drawing.Size(61, 25);
 			this.addWordPairButton.TabIndex = 21;
 			this.addWordPairButton.Text = "Add";
 			this.addWordPairButton.UseVisualStyleBackColor = true;
@@ -165,18 +155,16 @@
 			// 
 			this.wordPairPanel.AutoScroll = true;
 			this.wordPairPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.wordPairPanel.Location = new System.Drawing.Point(533, 79);
-			this.wordPairPanel.Margin = new System.Windows.Forms.Padding(4);
+			this.wordPairPanel.Location = new System.Drawing.Point(400, 64);
 			this.wordPairPanel.Name = "wordPairPanel";
-			this.wordPairPanel.Size = new System.Drawing.Size(479, 399);
+			this.wordPairPanel.Size = new System.Drawing.Size(360, 325);
 			this.wordPairPanel.TabIndex = 17;
 			// 
 			// clearFilesButton
 			// 
-			this.clearFilesButton.Location = new System.Drawing.Point(128, 17);
-			this.clearFilesButton.Margin = new System.Windows.Forms.Padding(4);
+			this.clearFilesButton.Location = new System.Drawing.Point(96, 14);
 			this.clearFilesButton.Name = "clearFilesButton";
-			this.clearFilesButton.Size = new System.Drawing.Size(100, 31);
+			this.clearFilesButton.Size = new System.Drawing.Size(75, 25);
 			this.clearFilesButton.TabIndex = 16;
 			this.clearFilesButton.Text = "Clear";
 			this.clearFilesButton.UseVisualStyleBackColor = true;
@@ -187,20 +175,18 @@
 			this.filePathPanel.AllowDrop = true;
 			this.filePathPanel.AutoScroll = true;
 			this.filePathPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.filePathPanel.Location = new System.Drawing.Point(21, 79);
-			this.filePathPanel.Margin = new System.Windows.Forms.Padding(4);
+			this.filePathPanel.Location = new System.Drawing.Point(16, 64);
 			this.filePathPanel.Name = "filePathPanel";
-			this.filePathPanel.Size = new System.Drawing.Size(479, 200);
+			this.filePathPanel.Size = new System.Drawing.Size(360, 163);
 			this.filePathPanel.TabIndex = 15;
 			this.filePathPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.filePathPanel_DragDrop);
 			this.filePathPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.filePathPanel_DragEnter);
 			// 
 			// wizardButton
 			// 
-			this.wizardButton.Location = new System.Drawing.Point(25, 491);
-			this.wizardButton.Margin = new System.Windows.Forms.Padding(4);
+			this.wizardButton.Location = new System.Drawing.Point(19, 399);
 			this.wizardButton.Name = "wizardButton";
-			this.wizardButton.Size = new System.Drawing.Size(100, 28);
+			this.wizardButton.Size = new System.Drawing.Size(75, 23);
 			this.wizardButton.TabIndex = 36;
 			this.wizardButton.Text = "Wizard";
 			this.wizardButton.UseVisualStyleBackColor = true;
@@ -209,10 +195,9 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(21, 283);
-			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label5.Location = new System.Drawing.Point(16, 230);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(57, 17);
+			this.label5.Size = new System.Drawing.Size(43, 13);
 			this.label5.TabIndex = 37;
 			this.label5.Text = "Options";
 			// 
@@ -223,14 +208,13 @@
 			// createNewCheckBox
 			// 
 			this.createNewCheckBox.AutoSize = true;
-			this.createNewCheckBox.Location = new System.Drawing.Point(20, 303);
-			this.createNewCheckBox.Margin = new System.Windows.Forms.Padding(4);
+			this.createNewCheckBox.Location = new System.Drawing.Point(15, 246);
 			this.createNewCheckBox.Name = "createNewCheckBox";
-			this.createNewCheckBox.Size = new System.Drawing.Size(146, 21);
+			this.createNewCheckBox.Size = new System.Drawing.Size(112, 17);
 			this.createNewCheckBox.TabIndex = 41;
 			this.createNewCheckBox.Text = "Create New File(s)";
 			this.toolTip1.SetToolTip(this.createNewCheckBox, "Enable this option to create a new file with the replaced text, leaving the old f" +
-        "ile with the original text.");
+        "ile untouched.");
 			this.createNewCheckBox.UseVisualStyleBackColor = true;
 			this.createNewCheckBox.CheckedChanged += new System.EventHandler(this.createNewCheckBox_CheckedChanged);
 			// 
@@ -238,10 +222,9 @@
 			// 
 			this.byGroupCheckBox.AutoSize = true;
 			this.byGroupCheckBox.Enabled = false;
-			this.byGroupCheckBox.Location = new System.Drawing.Point(227, 303);
-			this.byGroupCheckBox.Margin = new System.Windows.Forms.Padding(4);
+			this.byGroupCheckBox.Location = new System.Drawing.Point(170, 246);
 			this.byGroupCheckBox.Name = "byGroupCheckBox";
-			this.byGroupCheckBox.Size = new System.Drawing.Size(136, 21);
+			this.byGroupCheckBox.Size = new System.Drawing.Size(104, 17);
 			this.byGroupCheckBox.TabIndex = 42;
 			this.byGroupCheckBox.Text = "Create By Group";
 			this.toolTip1.SetToolTip(this.byGroupCheckBox, "Enable this option to create new files by Word Pair group number.");
@@ -252,10 +235,9 @@
 			// 
 			this.onCreateCheckBox.AutoSize = true;
 			this.onCreateCheckBox.Enabled = false;
-			this.onCreateCheckBox.Location = new System.Drawing.Point(227, 331);
-			this.onCreateCheckBox.Margin = new System.Windows.Forms.Padding(4);
+			this.onCreateCheckBox.Location = new System.Drawing.Point(170, 269);
 			this.onCreateCheckBox.Name = "onCreateCheckBox";
-			this.onCreateCheckBox.Size = new System.Drawing.Size(222, 21);
+			this.onCreateCheckBox.Size = new System.Drawing.Size(169, 17);
 			this.onCreateCheckBox.TabIndex = 43;
 			this.onCreateCheckBox.Text = "Name File Manually On Create";
 			this.toolTip1.SetToolTip(this.onCreateCheckBox, "Enable this option to display the SaveFileDialog when each file is created.");
@@ -265,10 +247,9 @@
 			// matchCaseCheckBox
 			// 
 			this.matchCaseCheckBox.AutoSize = true;
-			this.matchCaseCheckBox.Location = new System.Drawing.Point(20, 386);
-			this.matchCaseCheckBox.Margin = new System.Windows.Forms.Padding(4);
+			this.matchCaseCheckBox.Location = new System.Drawing.Point(15, 314);
 			this.matchCaseCheckBox.Name = "matchCaseCheckBox";
-			this.matchCaseCheckBox.Size = new System.Drawing.Size(104, 21);
+			this.matchCaseCheckBox.Size = new System.Drawing.Size(83, 17);
 			this.matchCaseCheckBox.TabIndex = 41;
 			this.matchCaseCheckBox.Text = "Match Case";
 			this.toolTip1.SetToolTip(this.matchCaseCheckBox, "Enable this option to only change text when the spelling is exactly the same, inc" +
@@ -278,7 +259,7 @@
 			// 
 			// ReplaceInFileView
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.onCreateCheckBox);
 			this.Controls.Add(this.byGroupCheckBox);
@@ -299,9 +280,8 @@
 			this.Controls.Add(this.wordPairPanel);
 			this.Controls.Add(this.clearFilesButton);
 			this.Controls.Add(this.filePathPanel);
-			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "ReplaceInFileView";
-			this.Size = new System.Drawing.Size(1035, 535);
+			this.Size = new System.Drawing.Size(776, 435);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

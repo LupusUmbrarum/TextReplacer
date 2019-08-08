@@ -14,6 +14,8 @@ namespace TextReplacer
     {
         private List<WordPair> pairs = new List<WordPair>();
 
+		private bool matchCase = false;
+
         public ReplaceInEditorView()
         {
             InitializeComponent();
@@ -48,26 +50,24 @@ namespace TextReplacer
                 return;
             }
 
+			// check to see if any of the wordpairs' new text contains the old text (so we 
+			// don't have any infinite loops caused by overwriting changes)
+			foreach (WordPair pair in pairs)
+			{
+				if ((matchCase && pair.newText.Contains(pair.target)) || pair.newText.ToUpper().Contains(pair.target.ToUpper()))
+				{
+					MessageBox.Show("The new text cannot contain the old text", "Error");
+					return;
+				}
+			}
+
 			int numChanges = 0;
 
             foreach (WordPair pair in pairs)
             {
                 string[] lines = richTextBox.Lines;
 
-                for (int x = 0; x < lines.Length; x++)
-                {
-                    while (lines[x].Contains(pair.target))
-                    {
-                        // replace
-                        string cline = lines[x];
-                        string a = cline.Substring(0, cline.IndexOf(pair.target));
-                        string b = cline.Substring(cline.IndexOf(pair.target) + pair.target.Length);
-
-                        lines[x] = a + pair.newText + b;
-
-						numChanges++;
-                    }
-                }
+				replaceTextByLine(ref numChanges, lines, pair);
 
                 richTextBox.Lines = lines;
             }
@@ -75,7 +75,50 @@ namespace TextReplacer
 			MessageBox.Show("Finished\n" + numChanges.ToString() + " changes made.");
 		}
 
-        void WizardFriendly.addWordPair_Wizard(string targetText, string newText)
+		/// <summary>
+		/// Does the actual replacing of text line by line
+		/// </summary>
+		/// <param name="numChanges"></param>
+		/// <param name="lines"></param>
+		/// <param name="pair"></param>
+		void replaceTextByLine(ref int numChanges, string[] lines, WordPair pair)
+		{
+			for (int x = 0; x < lines.Length; x++)
+			{
+				if (matchCase)
+				{
+					while (lines[x].Contains(pair.target))
+					{
+						// replace
+						string cline = lines[x];
+						int tlen = pair.target.Length;
+						string a = cline.Substring(0, cline.IndexOf(pair.target));
+						string b = cline.Substring(cline.IndexOf(pair.target) + tlen);
+
+						lines[x] = a + pair.newText + b;
+
+						numChanges++;
+					}
+				}
+				else
+				{
+					while (lines[x].ToUpper().Contains(pair.target.ToUpper()))
+					{
+						// replace
+						string cline = lines[x];
+						int tlen = pair.target.Length;
+						string a = cline.Substring(0, cline.ToUpper().IndexOf(pair.target.ToUpper()));
+						string b = cline.Substring(cline.ToUpper().IndexOf(pair.target.ToUpper()) + tlen);
+
+						lines[x] = a + pair.newText + b;
+
+						numChanges++;
+					}
+				}
+			}
+		}
+
+		void WizardFriendly.addWordPair_Wizard(string targetText, string newText)
         {
             addWordPair(targetText, newText, true);
         }
@@ -159,8 +202,8 @@ namespace TextReplacer
         {
             try
             {
-                ((TextBox)sender).SelectAll();
-                ((TextBox)sender).Focus();
+                //((TextBox)sender).SelectAll();
+                //((TextBox)sender).Focus();
             }
             catch(InvalidCastException icex)
             {
@@ -175,5 +218,10 @@ namespace TextReplacer
         {
 
         }
-    }// end class ReplaceInEditorView
+
+		private void matchCaseCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			matchCase = matchCaseCheckBox.Enabled;
+		}
+	}// end class ReplaceInEditorView
 }// end namespace TextReplacer

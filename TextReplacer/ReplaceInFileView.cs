@@ -452,8 +452,8 @@ namespace TextReplacer
 
         private void onNewTextBoxClick(object sender, EventArgs e)
         {
-            newTextTextBox.SelectAll();
-            newTextTextBox.Focus();
+            //newTextTextBox.SelectAll();
+            //newTextTextBox.Focus();
         }
 
         private void matchCaseCheckedChanged(object sender, EventArgs e)
@@ -478,9 +478,15 @@ namespace TextReplacer
 
 		private void onTargetBoxClick(object sender, EventArgs e)
         {
-            targetTextTextBox.SelectAll();
-            targetTextTextBox.Focus();
+            //targetTextTextBox.SelectAll();
+            //targetTextTextBox.Focus();
         }
+
+		private void onTargetBoxFocus(object sender, EventArgs e)
+		{
+			targetTextTextBox.SelectAll();
+			targetTextTextBox.Focus();
+		}
 
         private void byGroupCheckBox_CheckedChanged(object sender, EventArgs e)
         {
