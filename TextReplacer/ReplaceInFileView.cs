@@ -11,7 +11,7 @@ using System.IO;
 
 namespace TextReplacer
 {
-    public partial class ReplaceInFileView : UserControl, WizardFriendly
+    public partial class ReplaceInFileView : UserControl, WizardFriendly, Configurable
     {
         private List<VisualFile> files = new List<VisualFile>();
         private List<WordPair> pairs = new List<WordPair>();
@@ -509,5 +509,26 @@ namespace TextReplacer
 
 			return false;
 		}
-    }
+
+		Configuration Configurable.getConfiguration()
+		{
+			Configuration conf = new Configuration();
+
+			conf.options.createNewFiles = createNew;
+			conf.options.createByGroup = byGroup;
+			conf.options.createFileManuallyOnCreate = nameOnCreate;
+			conf.options.matchCase = matchCase;
+
+			conf.files = files.ToArray();
+
+			conf.pairs = pairs.ToArray();
+
+			return conf;
+		}
+
+		void Configurable.setConfiguration(Configuration config)
+		{
+
+		}
+	}
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TextReplacer
 {
-    public partial class ReplaceInEditorView : UserControl, WizardFriendly
+    public partial class ReplaceInEditorView : UserControl, WizardFriendly, Configurable
     {
         private List<WordPair> pairs = new List<WordPair>();
 
@@ -222,6 +222,18 @@ namespace TextReplacer
 		private void matchCaseCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			matchCase = matchCaseCheckBox.Enabled;
+		}
+
+		Configuration Configurable.getConfiguration()
+		{
+			Configuration conf = new Configuration();
+
+			return conf;
+		}
+
+		void Configurable.setConfiguration(Configuration config)
+		{
+
 		}
 	}// end class ReplaceInEditorView
 }// end namespace TextReplacer
