@@ -80,13 +80,13 @@ namespace TextReplacer
             replaceText();
         }
 
-        private void addWordPair()
+		private void addWordPair()
         {
-            if (targetTextTextBox.Text.Length > 0 && newTextTextBox.Text.Length > 0)
-            {
-                addWordPair(targetTextTextBox.Text, newTextTextBox.Text, false);
-            }
-        }
+			if (targetTextTextBox.Text.Length > 0 && newTextTextBox.Text.Length > 0)
+			{
+				addWordPair(targetTextTextBox.Text, newTextTextBox.Text, false);
+			}
+		}
         
         private void replaceText()
         {
@@ -331,6 +331,8 @@ namespace TextReplacer
 				sfd.Filter = normalExtension;
 			}
 
+			sfd.AddExtension = true;
+
             if(sfd.ShowDialog() == DialogResult.OK)
             {
                 return sfd.FileName;
@@ -365,11 +367,11 @@ namespace TextReplacer
             pairs.Remove(wp);
         }
 
-        void addWordPair(string targetText, string newText, bool fromWizard)
+        void addWordPair(string targetText, string newText, bool fromWizard, string groupNum = "0")
         {
             if(!newText.Contains(targetText))
             {
-                WordPair wp = new WordPair(targetText, newText);
+                WordPair wp = new WordPair(targetText, newText, groupNum);
 
                 wp.MakeVisual(ref wordPairPanel, this);
 
@@ -419,8 +421,17 @@ namespace TextReplacer
 
             for (; location < files.Count; location++)
             {
-                files[location].panel.SetBounds(files[location].panel.Location.X, (location > 0 ? location - 1 : location) * files[location].panel.Height, files[location].panel.Width, files[location].panel.Height);
+                files[location].panel.SetBounds(
+					files[location].panel.Location.X, 
+					// the Y position is the only one that should be updated
+					// if the index (location) of the panel is greater than 0, use 
+					// the previous panel's location. Otherwise, use this panel's location
+					(location > 0 ? location - 1 : location) * files[location].panel.Height, 
+					files[location].panel.Width, 
+					files[location].panel.Height);
             }
+
+			filePathPanel.Refresh();
 
             files.Remove(vf);
         }
@@ -523,12 +534,57 @@ namespace TextReplacer
 
 			conf.pairs = pairs.ToArray();
 
+			conf.text = "";
+
 			return conf;
 		}
 
 		void Configurable.setConfiguration(Configuration config)
 		{
+			clearConfiguration();
 
+			if(config.options.createNewFiles)
+			{
+				createNew = true;
+				createNewCheckBox.Checked = true;
+			}
+
+			if (config.options.createByGroup)
+			{
+				byGroup = true;
+				byGroupCheckBox.Checked = true;
+			}
+
+			if (config.options.createFileManuallyOnCreate)
+			{
+				nameOnCreate = true;
+				onCreateCheckBox.Checked = true;
+			}
+
+			if (config.options.matchCase)
+			{
+				matchCase = true;
+				matchCaseCheckBox.Checked = true;
+			}
+
+			for(int i = 0; i < config.files.Length; i++)
+			{
+				addVisualFile(config.files[i].path);
+			}
+
+			for (int i = 0; i < config.pairs.Length; i++)
+			{
+				addWordPair(config.pairs[i].target, config.pairs[i].newText, true, config.pairs[i].group);
+			}
+		}
+
+		void clearConfiguration()
+		{
+			wordPairPanel.Controls.Clear();
+			pairs.Clear();
+
+			filePathPanel.Controls.Clear();
+			files.Clear();
 		}
 	}
 }

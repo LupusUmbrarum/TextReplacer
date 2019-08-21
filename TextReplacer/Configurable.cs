@@ -25,5 +25,6 @@ namespace TextReplacer
 		public Option options;
 		public VisualFile[] files;
 		public WordPair[] pairs;
+		public string text;
 	}
 }

@@ -24,10 +24,14 @@ namespace TextReplacer
             this.newText = newText;
             this.group = group;
 
-            if(!int.TryParse(group, out groupNum))
+			int gn = 0;
+
+            if(!int.TryParse(group, out gn))
             {
                 MessageBox.Show("Group number must be numeric", "Error");
             }
+
+			groupNum = gn;
         }
 
         public void MakeVisual(ref Panel owningPanel, WizardFriendly parent)

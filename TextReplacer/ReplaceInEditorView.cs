@@ -34,8 +34,11 @@ namespace TextReplacer
 
         private void clearWordPairButton_Click(object sender, EventArgs e)
         {
-            wordPairPanel.Controls.Clear();
-            pairs.Clear();
+			if(MessageBox.Show("Are you sure you want to clear the list of Files?", "Confirm", MessageBoxButtons.YesNoCancel) == DialogResult.OK)
+			{
+				wordPairPanel.Controls.Clear();
+				pairs.Clear();
+			}
         }
 
         private void replaceTextButton_Click(object sender, EventArgs e)
@@ -138,8 +141,17 @@ namespace TextReplacer
 
             for (; location < pairs.Count; location++)
             {
-                pairs[location].panel.SetBounds(pairs[location].panel.Location.X, (location > 0 ? location - 1 : location) * pairs[location].panel.Height, pairs[location].panel.Width, pairs[location].panel.Height);
+                pairs[location].panel.SetBounds(
+					pairs[location].panel.Location.X,
+					// the Y position is the only one that should be updated
+					// if the index (location) of the panel is greater than 0, use 
+					// the previous panel's location. Otherwise, use this panel's location
+					(location > 0 ? location - 1 : location) * pairs[location].panel.Height, 
+					pairs[location].panel.Width, 
+					pairs[location].panel.Height);
             }
+
+			wordPairPanel.Refresh();
 
             pairs.Remove(wp);
         }
@@ -154,7 +166,7 @@ namespace TextReplacer
 
         }
 
-        void addWordPair(string targetText, string newText, bool fromWizard)
+        void addWordPair(string targetText, string newText, bool fromWizard, string groupNum = "0")
         {
             if(targetText.Length <= 0 || newText.Length <= 0)
             {
@@ -163,7 +175,7 @@ namespace TextReplacer
 
             if (!newText.Contains(targetText))
             {
-                WordPair wp = new WordPair(targetText, newText);
+                WordPair wp = new WordPair(targetText, newText, groupNum);
 
                 wp.MakeVisual(ref wordPairPanel, this);
 
@@ -228,12 +240,44 @@ namespace TextReplacer
 		{
 			Configuration conf = new Configuration();
 
+			conf.options.createNewFiles = false;
+			conf.options.createByGroup = false;
+			conf.options.createFileManuallyOnCreate = false;
+			conf.options.matchCase = matchCase;
+
+			conf.pairs = pairs.ToArray();
+
+			conf.files = null;
+
+			conf.text = richTextBox.Text;
+
 			return conf;
 		}
 
 		void Configurable.setConfiguration(Configuration config)
 		{
+			clearConfiguration();
 
+			if (config.options.matchCase)
+			{
+				matchCase = true;
+				matchCaseCheckBox.Checked = true;
+			}
+
+			for (int i = 0; i < config.pairs.Length; i++)
+			{
+				addWordPair(config.pairs[i].target, config.pairs[i].newText, false, config.pairs[i].group);
+			}
+
+			richTextBox.Text = config.text;
+		}
+
+		void clearConfiguration()
+		{
+			wordPairPanel.Controls.Clear();
+			pairs.Clear();
+
+			richTextBox.Text = "";
 		}
 	}// end class ReplaceInEditorView
 }// end namespace TextReplacer

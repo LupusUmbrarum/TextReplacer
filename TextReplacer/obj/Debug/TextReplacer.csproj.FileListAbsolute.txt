@@ -13,7 +13,6 @@ C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer
 C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.ReplaceInEditorView.resources
 C:\Users\lupus_000\source\repos\TextReplacer\TextReplacer\obj\Debug\TextReplacer.WordPairWizard.resources
 C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csprojResolveAssemblyReference.cache
-C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.ResolveComReference.cache
 C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.TextReplacer.resources
 C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.Properties.Resources.resources
 C:\Users\lupus_000\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.ReplaceInEditorView.resources
