@@ -17,12 +17,14 @@ namespace TextReplacer
 		private ReplaceInFileView rifv;
 		private ReplaceInEditorView riev;
 		private string currentFile = "";
+		private LinkedList<string> recentFiles;
+		private int numRecentCap = 10;
 
 		public TextReplacer()
         {
             InitializeComponent();
 
-            Text = "TextReplacer - " + version;
+			updateTitle();
 
 			rifv = new ReplaceInFileView();
 			riev = new ReplaceInEditorView();
@@ -30,9 +32,7 @@ namespace TextReplacer
             inFileTab.Controls.Add(rifv);
             inEditorTab.Controls.Add(riev);
 
-			MessageBox.Show(Properties.Settings.Default.recentFiles);
-			Properties.Settings.Default["recentFiles"] = "test";
-			Properties.Settings.Default.Save();
+			loadRecentFiles();
         }
 
 		private void inFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,7 +49,8 @@ namespace TextReplacer
 
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ofd.Multiselect = true;
+			ofd.Multiselect = false;
+			ofd.Title = "Open Configuration";
 
 			if (ofd.ShowDialog() == DialogResult.OK)
 			{
@@ -82,6 +83,7 @@ namespace TextReplacer
 			sfd.OverwritePrompt = true;
 			sfd.AddExtension = true;
 			sfd.Filter = "TRC (*.trc)|*.trc";
+			sfd.Title = "Save Configuration As";
 
 			if (sfd.ShowDialog() == DialogResult.OK)
 			{
@@ -150,6 +152,8 @@ namespace TextReplacer
 				// write down the richTextBox text
 				file.WriteLine(rievConf.text);
 
+				file.WriteLine("<|>--END OF RTB--<|>");
+
 				// write all the values for the wordpairs
 				for (int i = 0; i < rievConf.pairs.Length; i++)
 				{
@@ -162,6 +166,9 @@ namespace TextReplacer
 			}
 
 			currentFile = path;
+			addToRecentFiles(path);
+			saveRecentFiles();
+			updateTitle();
 		}
 
 		private void loadConfiguration(string path)
@@ -232,7 +239,12 @@ namespace TextReplacer
 				rievConf.options.matchCase = optionsArray[3] == "True";
 
 				// get the richTextBox lines
-				rievConf.text = lines[index++];
+				while(lines[index] != "<|>--END OF RTB--<|>")
+				{
+					rievConf.text += lines[index++] + "\n";
+				}
+
+				index++;
 
 				// get the wordpairs
 				while (lines[index] != "<|>--END OF RIEV--<|>")
@@ -247,6 +259,150 @@ namespace TextReplacer
 				((Configurable)riev).setConfiguration(rievConf);
 			}
 			catch(Exception ex) { ex.ToString(); MessageBox.Show("Error reading file"); return; }
+
+			currentFile = path;
+			addToRecentFiles(path);
+			saveRecentFiles();
+			updateTitle();
+		}
+
+		private void loadRecentFiles()
+		{
+			recentFiles = new LinkedList<string>();
+
+			string rf = Properties.Settings.Default.recentFiles;
+
+			while(rf.Contains("<|||>"))
+			{
+				int startIndex = rf.LastIndexOf("<|||>");
+
+				addToRecentFiles(rf.Substring(startIndex + 5));
+
+				rf = rf.Substring(0, startIndex);
+			}
+		}
+
+		private void saveRecentFiles()
+		{
+			string save = "";
+
+			for(int i = 0; i < recentFiles.Count && i < numRecentCap; i++)
+			{
+				save += "<|||>" + recentFiles.ElementAt(i);
+			}
+
+			Properties.Settings.Default["recentFiles"] = save;
+			Properties.Settings.Default.Save();
+
+			updateRecentFiles();
+		}
+
+		private void addToRecentFiles(string path)
+		{
+			if(recentFiles.Contains(path))
+			{
+				recentFiles.Remove(path);
+			}
+
+			recentFiles.AddFirst(path);
+
+			updateRecentFiles();
+		}
+
+		private void updateRecentFiles()
+		{
+			if (recentFiles.Count > numRecentCap)
+			{
+				recentFiles.RemoveLast();
+			}
+
+			// clear the current items from the recent list
+			recentToolStripMenuItem.DropDownItems.Clear();
+
+			LinkedList<ToolStripMenuItem> tsmis = new LinkedList<ToolStripMenuItem>();
+
+			for (int i = recentFiles.Count - 1; i > -1; i--)
+			{
+				ToolStripMenuItem newRecent = new ToolStripMenuItem();
+
+				newRecent.Tag = recentFiles.ElementAt(i);
+				newRecent.Text = (i + 1).ToString() + " " + recentFiles.ElementAt(i).Substring(recentFiles.ElementAt(i).LastIndexOf('\\') + 1) +
+					" (" + recentFiles.ElementAt(i) + ")";
+				newRecent.Click += new EventHandler(RecentFileClick);
+
+				tsmis.AddFirst(newRecent);
+			}
+
+			recentToolStripMenuItem.DropDownItems.AddRange(tsmis.ToArray());
+		}
+
+		private void RecentFileClick(object sender, EventArgs e)
+		{
+			if(!System.IO.File.Exists((string)((ToolStripMenuItem)sender).Tag))
+			{
+				if(MessageBox.Show("The file can not be located, would you like to remove it from the list?", "Confirm", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+				{
+					recentFiles.Remove((string)((ToolStripMenuItem)sender).Tag);
+					updateRecentFiles();
+				}
+
+				return;
+			}
+
+			loadConfiguration((string)((ToolStripMenuItem)sender).Tag);
+		}
+
+		private void updateTitle()
+		{
+			if(currentFile == "")
+			{
+				Text = "TextReplacer - " + version;
+			}
+			else
+			{
+				Text = "TextReplacer - " + version + " - " + currentFile;
+			}
+		}
+
+		private void TextReplacer_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control && e.Shift && e.KeyCode == Keys.S)
+			{
+				saveAs();
+			}
+			else if (e.Control && e.KeyCode == Keys.S)
+			{
+				if (currentFile == "")
+				{
+					saveAs();
+				}
+				else
+				{
+					saveConfiguration(currentFile);
+				}
+			}
+			else if(e.Control && e.Shift && e.KeyCode == Keys.O)
+			{
+				rifv.addFiles();
+			}
+			else if(e.Control && e.KeyCode == Keys.O)
+			{
+				ofd.Multiselect = false;
+				ofd.Title = "Open Configuration";
+
+				if (ofd.ShowDialog() == DialogResult.OK)
+				{
+					foreach (String file in ofd.FileNames)
+					{
+						loadConfiguration(ofd.FileName);
+					}
+				}
+			}
+		}
+
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.Close();
 		}
 	}
 }

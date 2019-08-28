@@ -44,6 +44,8 @@
 			this.inEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
 			this.sfd = new System.Windows.Forms.SaveFileDialog();
+			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.tabControl.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -98,7 +100,9 @@
             this.saveAsToolStripMenuItem,
             this.toolStripSeparator1,
             this.openToolStripMenuItem,
-            this.recentToolStripMenuItem});
+            this.recentToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
@@ -106,34 +110,34 @@
 			// saveConfigurationToolStripMenuItem
 			// 
 			this.saveConfigurationToolStripMenuItem.Name = "saveConfigurationToolStripMenuItem";
-			this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.saveConfigurationToolStripMenuItem.Text = "Save";
+			this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.saveConfigurationToolStripMenuItem.Text = "Save Configuration           Ctrl+S";
 			this.saveConfigurationToolStripMenuItem.Click += new System.EventHandler(this.saveConfigurationToolStripMenuItem_Click);
 			// 
 			// saveAsToolStripMenuItem
 			// 
 			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.saveAsToolStripMenuItem.Text = "Save As";
+			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.saveAsToolStripMenuItem.Text = "Save Configuration As      Ctrl+Shift+S";
 			this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(271, 6);
 			// 
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.openToolStripMenuItem.Text = "Open";
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.openToolStripMenuItem.Text = "Open Configuration          Ctrl+O";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
 			// recentToolStripMenuItem
 			// 
 			this.recentToolStripMenuItem.Name = "recentToolStripMenuItem";
-			this.recentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.recentToolStripMenuItem.Text = "Recent";
+			this.recentToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.recentToolStripMenuItem.Text = "Recent Configurations";
 			// 
 			// replaceModeToolStripMenuItem
 			// 
@@ -162,6 +166,18 @@
 			// 
 			this.ofd.FileName = "openFileDialog1";
 			// 
+			// exitToolStripMenuItem
+			// 
+			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+			this.exitToolStripMenuItem.Text = "Exit                                       Alt+F4";
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(271, 6);
+			// 
 			// TextReplacer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,9 +187,11 @@
 			this.Controls.Add(this.tabControl);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.KeyPreview = true;
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "TextReplacer";
 			this.Text = "TextReplacer";
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextReplacer_KeyDown);
 			this.tabControl.ResumeLayout(false);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
@@ -199,6 +217,8 @@
 		private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
 		private System.Windows.Forms.OpenFileDialog ofd;
 		private System.Windows.Forms.SaveFileDialog sfd;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 	}
 }
 

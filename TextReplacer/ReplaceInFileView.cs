@@ -37,16 +37,22 @@ namespace TextReplacer
 
         private void addFilesButton_Click(object sender, EventArgs e)
         {
-            ofd.Multiselect = true;
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                foreach (String file in ofd.FileNames)
-                {
-					addVisualFile(file);
-                }
-            }
+			addFiles();
         }
+
+		public void addFiles()
+		{
+			ofd.Multiselect = true;
+			ofd.Title = "Open File(s)";
+
+			if (ofd.ShowDialog() == DialogResult.OK)
+			{
+				foreach (String file in ofd.FileNames)
+				{
+					addVisualFile(file);
+				}
+			}
+		}
 
         private void clearFilesButton_Click(object sender, EventArgs e)
         {

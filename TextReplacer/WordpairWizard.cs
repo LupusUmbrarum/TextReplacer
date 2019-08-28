@@ -156,6 +156,12 @@ namespace TextReplacer
             ((TextBox)sender).Focus();
         }
 
+		private void genericOnFocus(object sender, EventArgs e)
+		{
+			((TextBox)sender).SelectAll();
+			((TextBox)sender).Focus();
+		}
+
 		private void okButton_Click(object sender, EventArgs e)
 		{
 			this.Close();
