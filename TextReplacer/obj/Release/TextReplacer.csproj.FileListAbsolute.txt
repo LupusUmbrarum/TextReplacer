@@ -7,6 +7,6 @@ A:\GitHub\TextReplacer\TextReplacer\obj\Release\TextReplacer.ReplaceInEditorView
 A:\GitHub\TextReplacer\TextReplacer\obj\Release\TextReplacer.ReplaceInFileView.resources
 A:\GitHub\TextReplacer\TextReplacer\obj\Release\TextReplacer.WordPairWizard.resources
 A:\GitHub\TextReplacer\TextReplacer\obj\Release\TextReplacer.csproj.GenerateResource.cache
-A:\GitHub\TextReplacer\TextReplacer\obj\Release\TextReplacer.csproj.CoreCompileInputs.cache
 A:\GitHub\TextReplacer\TextReplacer\obj\Release\TextReplacer.exe
 A:\GitHub\TextReplacer\TextReplacer\obj\Release\TextReplacer.pdb
+A:\GitHub\TextReplacer\TextReplacer\obj\Release\TextReplacer.csprojAssemblyReference.cache
