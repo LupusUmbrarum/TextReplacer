@@ -144,9 +144,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\x image2.png" />
+    <EmbeddedResource Include="Resources\x image2.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Properties\swapArrows.png" />
+    <None Include="Resources\swapImage.png" />
+    <None Include="Resources\swapArrows.png" />
     <Content Include="Resources\tr_DYt_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

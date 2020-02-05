@@ -37,7 +37,6 @@ A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.ReplaceInEditorView.r
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.ReplaceInFileView.resources
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.WordPairWizard.resources
 A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.GenerateResource.cache
-A:\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csproj.CoreCompileInputs.cache
 C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.csprojAssemblyReference.cache
 C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.exe
 C:\Users\lupus\Documents\GitHub\TextReplacer\TextReplacer\obj\Debug\TextReplacer.pdb

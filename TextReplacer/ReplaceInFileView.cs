@@ -447,7 +447,6 @@ namespace TextReplacer
             WordPairWizard wpw = new WordPairWizard(this);
 
 			wpw.ShowDialog();
-
 		}
 
         private void createNewCheckBox_CheckedChanged(object sender, EventArgs e)

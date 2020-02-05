@@ -64,13 +64,15 @@ namespace TextReplacer
             //targetBox.Click += this.onTargetBoxFocus;
             panel.Controls.Add(targetBox);
 
-            Label arrow = new Label();
-            arrow.Text = " -> ";
-            arrow.SetBounds(targetBox.Location.X + targetBox.Width, panel.Height / 2 - arrow.Height / 2 + 2, 20, arrow.Height);
-            panel.Controls.Add(arrow);
+			Button swapButton = new Button();
+			swapButton.SetBounds(targetBox.Location.X + targetBox.Width, panel.Height / 2 - swapButton.Height / 2 - 1, 25, 25);
+			swapButton.BackgroundImageLayout = ImageLayout.Stretch;
+			swapButton.BackgroundImage = Properties.Resources.swapImage;
+			swapButton.Click += new EventHandler(this.onSwapButtonsFocus);
+			panel.Controls.Add(swapButton);
 
             newBox = new TextBox();
-            newBox.SetBounds(arrow.Location.X + arrow.Width, panel.Height / 2 - newBox.Height / 2, owningPanel.Width / 3, newBox.Height);
+            newBox.SetBounds(swapButton.Location.X + swapButton.Width, panel.Height / 2 - newBox.Height / 2, owningPanel.Width / 3, newBox.Height);
             newBox.Text = newText;
             newBox.TextChanged += this.editWords;
             //newBox.Click += this.onNewBoxFocus;
@@ -138,5 +140,12 @@ namespace TextReplacer
             newBox.SelectAll();
             newBox.Focus();
         }
+
+		void onSwapButtonsFocus(object sender, EventArgs e)
+		{
+			string ntext = newBox.Text;
+			newBox.Text = targetBox.Text;
+			targetBox.Text = ntext;
+		}
     }
 }

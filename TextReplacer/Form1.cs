@@ -13,7 +13,7 @@ namespace TextReplacer
 {
     public partial class TextReplacer : Form
     {
-        private string version = "v1.5";
+        private string version = "v1.5.1";
 		private ReplaceInFileView rifv;
 		private ReplaceInEditorView riev;
 		private string currentFile = "";

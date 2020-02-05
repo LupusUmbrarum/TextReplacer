@@ -12,7 +12,7 @@ namespace TextReplacer
 {
     public partial class WordPairWizard : Form
     {
-        private WizardFriendly wf;
+		private WizardFriendly wf;
 
         public WordPairWizard(WizardFriendly wf) : this()
         {
